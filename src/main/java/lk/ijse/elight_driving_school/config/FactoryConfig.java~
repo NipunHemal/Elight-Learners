@@ -1,0 +1,4 @@
+package lk.ijse.elight_driving_school.config;
+
+public class FactroyConfig {
+}

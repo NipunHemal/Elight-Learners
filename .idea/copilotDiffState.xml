@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/src/main/java/lk/ijse/elight_driving_school/dao/custom/ProjectDAO.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/java/lk/ijse/elight_driving_school/dao/custom/ProjectDAO.java" />
+              <option name="updatedContent" value="package lk.ijse.elight_driving_school.dao.custom;&#10;&#10;import lk.ijse.elight_driving_school.dao.CrudDAO;&#10;import lk.ijse.elight_driving_school.entity.Project;&#10;&#10;public interface ProjectDAO extends CrudDAO&lt;Project, Integer&gt; {&#10;    // ...ProjectDAO methods...&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/lk/ijse/elight_driving_school/dao/custom/UserDAO.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/java/lk/ijse/elight_driving_school/dao/custom/UserDAO.java" />
+              <option name="updatedContent" value="package lk.ijse.elight_driving_school.dao.custom;&#10;&#10;import lk.ijse.elight_driving_school.dao.CrudDAO;&#10;import lk.ijse.elight_driving_school.entity.User;&#10;&#10;public interface UserDAO extends CrudDAO&lt;User, Integer&gt; {&#10;    // ...UserDAO methods...&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/lk/ijse/elight_driving_school/dao/impl/UserDAOImpl.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/java/lk/ijse/elight_driving_school/dao/impl/UserDAOImpl.java" />
+              <option name="updatedContent" value="package lk.ijse.elight_driving_school.dao.impl;&#10;&#10;import lk.ijse.elight_driving_school.dao.custom.UserDAO;&#10;&#10;public class UserDAOImpl implements UserDAO {&#10;    // ...implementation...&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
