@@ -50,7 +50,7 @@ public class AlertUtils {
 
         // Set custom stylesheet
         alert.getDialogPane().getStylesheets().add(
-                AlertUtils.class.getResource("/css/util/alert.css").toExternalForm()
+                AlertUtils.class.getResource("/style/util/alert.css").toExternalForm()
         );
 
         alert.showAndWait();
@@ -87,7 +87,7 @@ public class AlertUtils {
 
         // Set custom stylesheet
         alert.getDialogPane().getStylesheets().add(
-                AlertUtils.class.getResource("/css/util/alert.css").toExternalForm()
+                AlertUtils.class.getResource("/style/util/alert.css").toExternalForm()
         );
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -118,7 +118,7 @@ public class AlertUtils {
 
         // Set custom stylesheet
         alert.getDialogPane().getStylesheets().add(
-                AlertUtils.class.getResource("/css/util/alert.css").toExternalForm()
+                AlertUtils.class.getResource("/style/util/alert.css").toExternalForm()
         );
 
         Optional<ButtonType> result = alert.showAndWait();
