@@ -1,0 +1,207 @@
+/* Root styles */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+/* Left Panel */
+.left-panel {
+    -fx-background-color: #ffffff;
+    -fx-padding: 40;
+}
+
+/* Right Panel */
+.right-panel {
+    -fx-background-color: #f8fdf8;
+    -fx-padding: 40;
+}
+
+/* Typography */
+.welcome-title {
+    -fx-font-size: 42px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c2c2c;
+    -fx-padding: 0 0 10 0;
+}
+
+.subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+    -fx-text-alignment: center;
+}
+
+.app-name {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c2c2c;
+}
+
+/* Input Fields */
+.input-field {
+    -fx-pref-height: 50px;
+    -fx-pref-width: 350px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;
+    -fx-padding: 0 20 0 20;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #999999;
+}
+
+.input-field:focused {
+    -fx-border-color: #90c695;
+    -fx-border-width: 2px;
+}
+
+/* Login Button */
+.login-button {
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-cursor: hand;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 350px;
+}
+
+.login-button:hover {
+    -fx-background-color: #404040;
+}
+
+.login-button:pressed {
+    -fx-background-color: #1a1a1a;
+}
+
+/* Links */
+.forgot-password {
+    -fx-text-fill: #666666;
+    -fx-font-size: 12px;
+    -fx-underline: false;
+}
+
+.forgot-password:hover {
+    -fx-text-fill: #2c2c2c;
+    -fx-underline: true;
+}
+
+/* Divider */
+.divider-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #999999;
+}
+
+/* Social Buttons */
+.social-button {
+    -fx-background-color: #2c2c2c;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-cursor: hand;
+}
+
+.social-button:hover {
+    -fx-background-color: #404040;
+}
+
+.social-icon {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+/* Register */
+.register-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+}
+
+.register-link {
+    -fx-font-size: 14px;
+    -fx-text-fill: #90c695;
+    -fx-font-weight: bold;
+    -fx-underline: false;
+}
+
+.register-link:hover {
+    -fx-underline: true;
+}
+
+/* Right Panel Elements */
+.main-character {
+    -fx-font-size: 48px;
+    -fx-text-fill: white;
+}
+
+.task-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-pref-width: 280px;
+}
+
+.task-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c2c2c;
+}
+
+.task-count {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666666;
+}
+
+.progress-circle {
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.progress-text {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #90c695;
+}
+
+.design-button {
+    -fx-background-color: #e8f5e8;
+    -fx-text-fill: #2c2c2c;
+    -fx-font-size: 12px;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-padding: 5 15 5 15;
+    -fx-cursor: hand;
+}
+
+.design-button:hover {
+    -fx-background-color: #d4f0d4;
+}
+
+.bottom-text {
+    -fx-font-size: 20px;
+    -fx-text-fill: #2c2c2c;
+    -fx-text-alignment: center;
+}
+
+.app-name-right {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c2c2c;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    .welcome-title {
+        -fx-font-size: 32px;
+    }
+
+    .input-field {
+        -fx-pref-width: 280px;
+    }
+
+    .login-button {
+        -fx-pref-width: 280px;
+    }
+}
