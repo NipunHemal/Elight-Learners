@@ -17,18 +17,6 @@ public class DialogUtil {
         INFO, ERROR, CONFIRM, CUSTOM
     }
 
-    /**
-     * Shows a customizable dialog
-     * @param type The type of dialog
-     * @param title Dialog title
-     * @param message Dialog message
-     * @param confirmText Text for confirm button (null for default)
-     * @param cancelText Text for cancel button (null to hide)
-     * @param onConfirm Action to run on confirm (null to disable)
-     * @param onCancel Action to run on cancel (null for default close)
-     * @param graphic Custom graphic node (null for text message)
-     */
-
     public static void close(){
         if (dialog != null) {
             dialog.close();
@@ -77,7 +65,7 @@ public class DialogUtil {
 //        layout.setBody(body);
 
         // Create dialog - ensure dialogPane is not null
-        StackPane dialogPane = ReferenceUtils.dialogPane;
+        StackPane dialogPane = ReferenceUtils.mainStackPane;
         if (dialogPane == null) {
             throw new IllegalStateException("ReferenceUtils.dialogPane is null. Make sure it's initialized.");
         }

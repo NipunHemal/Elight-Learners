@@ -5,5 +5,5 @@ import javafx.stage.Stage;
 
 public class ReferenceUtils {
     public static Stage primaryStage;
-    public static StackPane dialogPane;
+    public static StackPane mainStackPane;
 }
