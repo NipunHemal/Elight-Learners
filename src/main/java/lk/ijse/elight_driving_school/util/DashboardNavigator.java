@@ -33,6 +33,29 @@ public class DashboardNavigator {
            }
     }
 
+    public static void mainNavigator(String path) {
+        try{
+            ReferenceUtils.mainStackPane.getChildren().clear();
+            AnchorPane pane  = FXMLLoader.load(DashboardNavigator.class.getResource(path));
+
+//            pane.prefWidthProperty().bind(dashboardContainer.widthProperty());
+//            pane.prefHeightProperty().bind(dashboardContainer.heightProperty());
+
+            pane.prefWidthProperty().unbind();
+            pane.prefHeightProperty().unbind();
+
+            AnchorPane.setTopAnchor(pane, 0.0);
+            AnchorPane.setBottomAnchor(pane, 0.0);
+            AnchorPane.setLeftAnchor(pane, 0.0);
+            AnchorPane.setRightAnchor(pane, 0.0);
+
+            ReferenceUtils.mainStackPane.getChildren().add(pane);
+        } catch (Exception e) {
+            NotificationUtils.showError("Error", e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     private static void navigator(String fxml) throws IOException {
             dashboardContainer.getChildren().clear();
             AnchorPane pane  = FXMLLoader.load(DashboardNavigator.class.getResource(fxml));
@@ -47,9 +70,6 @@ public class DashboardNavigator {
             AnchorPane.setBottomAnchor(pane, 0.0);
             AnchorPane.setLeftAnchor(pane, 0.0);
             AnchorPane.setRightAnchor(pane, 0.0);
-
-            System.out.println("pane width: " + pane.getWidth());
-            System.out.println("dashboardContainer width: " + dashboardContainer.getWidth());
 
             dashboardContainer.getChildren().add(pane);
     }
