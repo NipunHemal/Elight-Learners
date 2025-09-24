@@ -76,7 +76,7 @@ public class DashboardNavigator {
 
     private static void loadBreadcrumb(Runnable run, String title) throws IOException {
             breadcrumbContainer.getChildren().clear();
-            FXMLLoader loader  = new FXMLLoader(DashboardNavigator.class.getResource("/view/Component/Breadcrumb.fxml"));
+            FXMLLoader loader  = new FXMLLoader(DashboardNavigator.class.getResource("/view/components/Breadcrumb.fxml"));
             Parent pane  = loader.load();
 
             BreadcrumbController breadcrumbController = loader.getController();
