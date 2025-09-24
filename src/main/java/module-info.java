@@ -9,6 +9,8 @@ module lk.ijse.elight_driving_school {
     requires jakarta.mail;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
+    requires java.naming;
+    requires jbcrypt;
 
     opens lk.ijse.elight_driving_school to javafx.fxml;
 
