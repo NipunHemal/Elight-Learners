@@ -2,7 +2,8 @@ package lk.ijse.elight_driving_school.service.custom.impl;
 
 import lk.ijse.elight_driving_school.entity.Student;
 import lk.ijse.elight_driving_school.enums.DAOTypes;
-import lk.ijse.elight_driving_school.service.custom.StudentBO;
+import lk.ijse.elight_driving_school.mapper.StudentMapper;
+import lk.ijse.elight_driving_school.service.custom.StudentService;
 
 import lk.ijse.elight_driving_school.service.exception.DuplicateException;
 import lk.ijse.elight_driving_school.dao.DAOFactory;
@@ -14,17 +15,16 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class StudentBOImpl implements StudentBO {
+public class StudentServiceImpl implements StudentService {
 
     private final StudentDAO studentDAO = DAOFactory.getInstance().getDAO(DAOTypes.STUDENTS);
-    private final EntityDTOConverter converter = new EntityDTOConverter();
 
     @Override
     public List<StudentDTO> getAllStudents() throws Exception {
         List<Student> studentsList = studentDAO.getAll();
         List<StudentDTO> studentsDTOList = new ArrayList<>();
         for (Student students : studentsList) {
-            studentsDTOList.add(converter.getStudentsDTO(students));
+            studentsDTOList.add(StudentMapper.toDTO(students));
         }
         return studentsDTOList;
     }
@@ -40,7 +40,7 @@ public class StudentBOImpl implements StudentBO {
         if (students.isPresent()) {
             throw new DuplicateException("Student already exists");
         }
-        return studentDAO.save(converter.getStudentsEntity(t));
+        return studentDAO.save(StudentMapper.toEntity(t));
 
     }
 
@@ -50,7 +50,7 @@ public class StudentBOImpl implements StudentBO {
         if (students.isEmpty()) {
             throw new DuplicateException("Student Not Found");
         }
-        return studentDAO.update(converter.getStudentsEntity(t));
+        return studentDAO.update(StudentMapper.toEntity(t));
     }
 
     @Override
@@ -70,10 +70,7 @@ public class StudentBOImpl implements StudentBO {
     @Override
     public Optional<StudentDTO> findByStudentId(String id) throws Exception {
         Optional<Student> students = studentDAO.findById(id);
-        if (students.isEmpty()) {
-            return Optional.empty();
-        }
-        return Optional.of(converter.getStudentsDTO(students.get()));
+        return students.map(StudentMapper::toDTO);
     }
 
     @Override
