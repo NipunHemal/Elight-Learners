@@ -7,6 +7,7 @@ module lk.ijse.elight_driving_school {
     requires com.jfoenix;
     requires jdk.compiler;
     requires jakarta.mail;
+    requires java.sql;
 
     opens lk.ijse.elight_driving_school to javafx.fxml;
     opens lk.ijse.elight_driving_school.controller to javafx.fxml;
