@@ -1,7 +1,8 @@
 package lk.ijse.elight_driving_school.service.custom.impl;
 
 import lk.ijse.elight_driving_school.enums.DAOTypes;
-import lk.ijse.elight_driving_school.service.custom.CourseBO;
+import lk.ijse.elight_driving_school.mapper.CourseMapper;
+import lk.ijse.elight_driving_school.service.custom.CourseService;
 import lk.ijse.elight_driving_school.service.exception.DuplicateException;
 import lk.ijse.elight_driving_school.dao.DAOFactory;
 import lk.ijse.elight_driving_school.dao.custom.CourseDAO;
@@ -12,17 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CourseBOImpl implements CourseBO {
+public class CourseServiceImpl implements CourseService {
 
     private final CourseDAO courseDAO = (CourseDAO) DAOFactory.getInstance().getDAO(DAOTypes.COURSE);
-    private final EntityDTOConverter entityDTOConverter = new EntityDTOConverter();
 
     @Override
     public List<CourseDTO> getAllCourses() throws Exception {
         List<Course> courses = courseDAO.getAll();
         List<CourseDTO> dtos = new ArrayList<>();
         for (Course course : courses) {
-            dtos.add(entityDTOConverter.getCourseDTO(course));
+            dtos.add(CourseMapper.toDTO(course));
         }
         return dtos;
     }
@@ -38,7 +38,7 @@ public class CourseBOImpl implements CourseBO {
         if (course.isPresent()) {
             throw new DuplicateException("Course already exists");
         }
-        return courseDAO.save(entityDTOConverter.getCourseEntity(t));
+        return courseDAO.save(CourseMapper.toEntity(t));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class CourseBOImpl implements CourseBO {
         if (course.isEmpty()) {
             throw new DuplicateException("Course not Found");
         }
-        return courseDAO.update(entityDTOConverter.getCourseEntity(t));
+        return courseDAO.update(CourseMapper.toEntity(t));
     }
 
     @Override
@@ -67,10 +67,7 @@ public class CourseBOImpl implements CourseBO {
     @Override
     public Optional<CourseDTO> findByCourseId(String id) throws Exception {
         Optional<Course> course = courseDAO.findById(id);
-        if (course.isPresent()) {
-           return Optional.of(entityDTOConverter.getCourseDTO(course.get()));
-        }
-        return Optional.empty();
+        return course.map(CourseMapper::toDTO);
     }
 
     @Override
