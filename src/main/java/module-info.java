@@ -8,8 +8,10 @@ module lk.ijse.elight_driving_school {
     requires jdk.compiler;
     requires jakarta.mail;
     requires jakarta.persistence;
+    requires org.hibernate.orm.core;
 
     opens lk.ijse.elight_driving_school to javafx.fxml;
+
     opens lk.ijse.elight_driving_school.controller to javafx.fxml;
     opens lk.ijse.elight_driving_school.controller.auth to javafx.fxml;
     opens lk.ijse.elight_driving_school.controller.layout to javafx.fxml;
