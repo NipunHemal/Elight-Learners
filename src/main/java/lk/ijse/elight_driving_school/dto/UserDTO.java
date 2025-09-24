@@ -1,5 +1,6 @@
 package lk.ijse.elight_driving_school.dto;
 
+import lk.ijse.elight_driving_school.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
