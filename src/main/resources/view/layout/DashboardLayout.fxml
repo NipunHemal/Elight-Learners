@@ -40,21 +40,20 @@
                      <String fx:value="menu-item" />
                      <String fx:value="menu-item-active" />
                   </styleClass></Button>
-                    <Button styleClass="menu-item" text="Transactions" />
-                    <Button styleClass="menu-item" text="Card Center" />
-                    <Button styleClass="menu-item" text="Contracts" />
-                    <Button styleClass="menu-item" text="E-Wallet Center" />
-                    <Button styleClass="menu-item" text="Reports" />
+                    <Button styleClass="menu-item" text="Instructor" onAction="#onActionInstructor"/>
+                    <Button styleClass="menu-item" text="Students" onAction="#onActionStudents"/>
+                    <Button styleClass="menu-item" text="Courses" onAction="#onActionCourses"/>
+                    <Button styleClass="menu-item" text="Lessons" onAction="#onActionLessons"/>
+<!--                    <Button styleClass="menu-item" text="Reports" />-->
                 </VBox>
 
                 <Region VBox.vgrow="ALWAYS" />
 
                 <VBox styleClass="menu-footer">
-                    <Button styleClass="menu-item" text="Logout" />
+                    <Button styleClass="menu-item" text="Logout" onAction="#onActionLogout"/>
                 </VBox>
             <VBox alignment="CENTER" fillWidth="false" prefWidth="200.0">
                <children>
-      
                       <Label styleClass="copyright" text="© FinBank 2020" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
@@ -67,10 +66,14 @@
                 <VBox styleClass="content-container">
                     <!-- Header -->
                     <HBox alignment="CENTER" prefHeight="65.0" prefWidth="616.0" styleClass="header">
-                        <VBox alignment="CENTER_LEFT">
-                            <Label styleClass="welcome-title" text="Welcome to FinBank" />
-                            <Label styleClass="welcome-subtitle" text="Hi, Barry Waterloo. Welcome Back." />
-                        </VBox>
+                  <StackPane fx:id="breadcrumbContainer">
+                     <children>
+                              <VBox alignment="CENTER_LEFT">
+                                  <Label styleClass="welcome-title" text="Welcome to FinBank" />
+                                  <Label styleClass="welcome-subtitle" text="Hi, Barry Waterloo. Welcome Back." />
+                              </VBox>
+                     </children>
+                  </StackPane>
                         <Region HBox.hgrow="ALWAYS" />
                         <HBox spacing="10" styleClass="header-actions">
                             <Button styleClass="header-btn, moon-btn" text="🌙" />
@@ -78,7 +81,7 @@
                             <Circle radius="20" styleClass="avatar" />
                         </HBox>
                     </HBox>
-               <AnchorPane>
+               <AnchorPane fx:id="dashboardContainer">
                   <children>
       
                           <!-- Main Dashboard Grid -->
