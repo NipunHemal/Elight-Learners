@@ -2,7 +2,8 @@ package lk.ijse.elight_driving_school.service.custom.impl;
 
 import lk.ijse.elight_driving_school.entity.Payment;
 import lk.ijse.elight_driving_school.enums.DAOTypes;
-import lk.ijse.elight_driving_school.service.custom.PaymentsBO;
+import lk.ijse.elight_driving_school.mapper.PaymentMapper;
+import lk.ijse.elight_driving_school.service.custom.PaymentsService;
 import lk.ijse.elight_driving_school.service.exception.DuplicateException;
 import lk.ijse.elight_driving_school.service.exception.NotFoundException;
 import lk.ijse.elight_driving_school.dao.DAOFactory;
@@ -13,17 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class PaymentsBOImpl implements PaymentsBO {
+public class PaymentsServiceImpl implements PaymentsService {
 
     private final PaymentDAO paymentDAO = (PaymentDAO) DAOFactory.getInstance().getDAO(DAOTypes.PAYMENTS);
-    private final EntityDTOConverter converter = new EntityDTOConverter();
 
     @Override
     public List<PaymentsDTO> getAllPayments() throws Exception {
         List<Payment> paymentsList = paymentDAO.getAll();
         List<PaymentsDTO> list = new ArrayList<>();
         for (Payment payments : paymentsList) {
-            list.add(converter.getPaymentsDTO(payments));
+            list.add(PaymentMapper.toDTO(payments));
         }
         return list;
     }
@@ -42,7 +42,7 @@ public class PaymentsBOImpl implements PaymentsBO {
         if (t.getStudentId() == null) {
             throw new NotFoundException("Student id is null");
         }
-        return paymentDAO.save(converter.getPaymentsEntity(t));
+        return paymentDAO.save(PaymentMapper.toEntity(t));
     }
 
     @Override
@@ -51,7 +51,7 @@ public class PaymentsBOImpl implements PaymentsBO {
         if (payments.isEmpty()) {
             throw new DuplicateException("Payment Not Found");
         }
-        return paymentDAO.update(converter.getPaymentsEntity(t));
+        return paymentDAO.update(PaymentMapper.toEntity(t));
     }
 
     @Override
@@ -71,10 +71,7 @@ public class PaymentsBOImpl implements PaymentsBO {
     @Override
     public Optional<PaymentsDTO> findByPaymentId(String id) throws Exception {
         Optional<Payment> payments = paymentDAO.findById(id);
-        if (payments.isPresent()) {
-            return Optional.of(converter.getPaymentsDTO(payments.get()));
-        }
-        return Optional.empty();
+        return payments.map(PaymentMapper::toDTO);
     }
 
     @Override

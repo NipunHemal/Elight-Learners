@@ -5,7 +5,7 @@ import lk.ijse.elight_driving_school.dto.PaymentsDTO;
 import java.util.List;
 import java.util.Optional;
 
-public interface PaymentsBO {
+public interface PaymentsService {
     List<PaymentsDTO> getAllPayments() throws Exception;
 
     String getLastPaymentId() throws Exception;
