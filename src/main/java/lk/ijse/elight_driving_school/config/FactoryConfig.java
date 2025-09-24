@@ -39,8 +39,7 @@ public class FactoryConfig {
 
     public static synchronized FactoryConfig getInstance()  {
         return factoryConfig == null ?
-                factoryConfig = new FactoryConfig()
-                :
+                factoryConfig = new FactoryConfig():
                 factoryConfig;
     }
 
