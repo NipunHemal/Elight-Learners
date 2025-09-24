@@ -1,5 +1,8 @@
 package lk.ijse.elight_driving_school.dao.custom;
 
-public interface UserDAO {
-    // ...UserDAO methods...
+import lk.ijse.elight_driving_school.dao.CrudDAO;
+import lk.ijse.elight_driving_school.entity.User;
+
+public interface UserDAO extends CrudDAO<User> {
+    public User getUserByEmail(String email);
 }
