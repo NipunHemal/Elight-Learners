@@ -8,7 +8,7 @@ import org.hibernate.cfg.Configuration;
 import java.util.Properties;
 
 public class FactoryConfig {
-    private static FactoryConfig factoryConfiguration;
+    private static FactoryConfig factoryConfig;
     private SessionFactory sessionFactory;
 
 
@@ -38,10 +38,10 @@ public class FactoryConfig {
     }
 
     public static synchronized FactoryConfig getInstance()  {
-        return factoryConfiguration == null ?
-                factoryConfiguration = new FactoryConfig()
+        return factoryConfig == null ?
+                factoryConfig = new FactoryConfig()
                 :
-                factoryConfiguration;
+                factoryConfig;
     }
 
     public Session getSession(){
