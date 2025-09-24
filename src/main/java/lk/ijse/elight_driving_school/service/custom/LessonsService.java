@@ -6,7 +6,7 @@ import lk.ijse.elight_driving_school.service.SuperService;
 import java.util.List;
 import java.util.Optional;
 
-public interface LessonsBO extends SuperService {
+public interface LessonsService extends SuperService {
     List<LessonsDTO> getAllLessons() throws Exception;
 
     String getLastLessonId() throws Exception;

@@ -4,7 +4,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import lk.ijse.elight_driving_school.entity.Lesson;
 import lk.ijse.elight_driving_school.enums.DAOTypes;
-import lk.ijse.elight_driving_school.service.custom.LessonsBO;
+import lk.ijse.elight_driving_school.mapper.LessonMapper;
+import lk.ijse.elight_driving_school.service.custom.LessonsService;
 import lk.ijse.elight_driving_school.service.exception.DuplicateException;
 import lk.ijse.elight_driving_school.service.exception.NotFoundException;
 import lk.ijse.elight_driving_school.dao.DAOFactory;
@@ -18,20 +19,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class LessonsBOImpl implements LessonsBO {
+public class LessonsServiceImpl implements LessonsService {
 
     private final LessonsDAO lessonsDAO = (LessonsDAO) DAOFactory.getInstance().getDAO(DAOTypes.LESSONS);
     private final CourseDAO courseDAO = (CourseDAO) DAOFactory.getInstance().getDAO(DAOTypes.COURSE);
     private final InstructorDAO instructorDAO =  (InstructorDAO) DAOFactory.getInstance().getDAO(DAOTypes.INSTRUCTORS);
     private final QueryDAO queryDAO = (QueryDAO) DAOFactory.getInstance().getDAO(DAOTypes.QUERY);
-    private final EntityDTOConverter converter = new EntityDTOConverter();
 
     @Override
     public List<LessonsDTO> getAllLessons() throws Exception {
         List<Lesson> lessons = lessonsDAO.getAll();
         List<LessonsDTO> lessonsDTOS = new ArrayList<>();
         for (Lesson lesson : lessons) {
-            lessonsDTOS.add(converter.getLessonsDTO(lesson));
+            lessonsDTOS.add(LessonMapper.toDTO(lesson));
         }
         return lessonsDTOS;
     }
@@ -51,7 +51,7 @@ public class LessonsBOImpl implements LessonsBO {
         boolean instructorExists = instructorDAO.findById(t.getCourseId()).isPresent();
 
         if (courseExists && instructorExists) {
-            return lessonsDAO.save(converter.getLessonsEntity(t));
+            return lessonsDAO.save(LessonMapper.toEntity(t));
         }
         throw new Exception("Lessons not saved");
     }
@@ -62,7 +62,7 @@ public class LessonsBOImpl implements LessonsBO {
         if (lessons.isEmpty()) {
             throw new DuplicateException("Lessons Not Found");
         }
-        return lessonsDAO.update(converter.getLessonsEntity(t));
+        return lessonsDAO.update(LessonMapper.toEntity(t));
     }
 
     @Override
@@ -98,9 +98,6 @@ public class LessonsBOImpl implements LessonsBO {
     @Override
     public Optional<LessonsDTO> findByLessonId(String id) throws Exception {
         Optional<Lesson> lessons = lessonsDAO.findById(id);
-        if (lessons.isPresent()) {
-            return Optional.of(converter.getLessonsDTO(lessons.get()));
-        }
-        return Optional.empty();
+        return lessons.map(LessonMapper::toDTO);
     }
 }
