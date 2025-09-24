@@ -6,7 +6,7 @@ import lk.ijse.elight_driving_school.dto.CourseDTO;
 import java.util.List;
 import java.util.Optional;
 
-public interface CourseBO extends SuperService {
+public interface CourseService extends SuperService {
     List<CourseDTO> getAllCourses() throws Exception;
 
     String getLastCourseId() throws Exception;
