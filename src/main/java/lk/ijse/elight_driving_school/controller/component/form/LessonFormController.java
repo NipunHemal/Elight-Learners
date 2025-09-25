@@ -93,6 +93,7 @@ public class LessonFormController implements Initializable {
         this.lessonsDTO = lessonsDTO;
         handelUpdateCreate();
     }
+
     private void handelUpdateCreate(){
         if (lessonsDTO != null) {
             lblFormTitle.setText("Update Instructor");
@@ -108,7 +109,6 @@ public class LessonFormController implements Initializable {
             clearFields();
         }
     }
-
 
     public void clearFields() {
         txtStartTime.clear();
