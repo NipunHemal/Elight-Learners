@@ -85,7 +85,6 @@ public class PaymentController implements Initializable {
             tablePayment.getItems().clear();
             java.util.List<PaymentsDTO> payments = paymentsService.getAllPayments();
             tablePayment.getItems().addAll(payments.stream().map(PaymentMapper::toTM).toList());
-//            tablePayment.getItems().addAll(List.copyOf(payments.stream().map(PaymentMapper::toTM).toList()));
             txtCourseCount.setText(String.valueOf(payments.size()));
 
         } catch (Exception e) {
