@@ -32,7 +32,7 @@ public class PaymentMapper {
         return payment;
     }
 
-    public static PaymentsTM toTM(PaymentsTM dto){
+    public static PaymentsTM toTM(PaymentsDTO dto){
         if (dto == null) return null;
 
         PaymentsTM payment = new PaymentsTM();
