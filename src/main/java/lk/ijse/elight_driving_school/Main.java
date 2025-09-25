@@ -21,6 +21,5 @@ public class Main extends Application {
         stage.setTitle("Elight Driving School");
         stage.show();
         ReferenceUtils.mainStackPane = mainStackPane;
-        DashboardNavigator.mainNavigator("/view/components/Table.fxml");
     }
 }
