@@ -60,6 +60,7 @@ public class InstructorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
             initializeTable();
+            loadInstructors();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -71,7 +72,7 @@ public class InstructorController implements Initializable {
         colLastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         cplContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
-        colId.setCellValueFactory(new PropertyValueFactory<>("specialization"));
+        colSpecialization.setCellValueFactory(new PropertyValueFactory<>("specialization"));
         colAvailability.setCellValueFactory(new PropertyValueFactory<>("availability"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("action"));
     }
@@ -81,10 +82,10 @@ public class InstructorController implements Initializable {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/components/form/InstructorForm.fxml"));
             Parent customContent = loader.load();
-            loader.<InstructorFormController>getController().init(this);
+            loader.<InstructorFormController>getController().init(this,null);
             DialogUtil.showCustom(null, null, customContent,
                     "Save", "Cancel",
-                    () -> loader.<InstructorFormController>getController().saveProject(),
+                    () -> loader.<InstructorFormController>getController().handelSubmit(),
                     null);
         } catch (Exception e) {
             e.printStackTrace();
