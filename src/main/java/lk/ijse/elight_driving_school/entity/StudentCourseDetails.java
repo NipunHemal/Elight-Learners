@@ -13,7 +13,8 @@ import java.util.Date;
 @Builder
 public class StudentCourseDetails {
     @Id
-    private String studentCourseId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long studentCourseId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
