@@ -1,0 +1,474 @@
+/* Modern JavaFX Form Styles - Enhanced Version */
+
+/* Root and Base Styles */
+.root {
+    -fx-background-color: #F8FAFC;
+    -fx-font-family: "Segoe UI", "Inter", "Roboto", "Helvetica Neue", sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* Container Styles */
+.form-container {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 20, 0, 0, 4);
+    -fx-padding: 32;
+}
+
+.card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 12, 0, 0, 2);
+    -fx-padding: 24;
+}
+
+/* Typography */
+.form-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #1F2937;
+    -fx-padding: 0 0 8 0;
+}
+
+.form-subtitle {
+    -fx-font-size: 16px;
+    -fx-font-weight: 400;
+    -fx-text-fill: #6B7280;
+    -fx-padding: 0 0 32 0;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #374151;
+    -fx-padding: 0 0 16 0;
+}
+
+.field-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #374151;
+    -fx-padding: 0 0 6 0;
+}
+
+.field-description {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6B7280;
+    -fx-padding: 0 0 8 0;
+}
+
+/* Modern Input Fields */
+.modern-input {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D1D5DB;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 14 16 14 16;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1F2937;
+    -fx-prompt-text-fill: #9CA3AF;
+    -fx-min-height: 48;
+    -fx-pref-height: 48;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
+.modern-input:focused {
+    -fx-border-color: #3B82F6;
+    -fx-border-width: 2;
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.15), 12, 0, 0, 0);
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
+.modern-input:hover {
+    -fx-border-color: #9CA3AF;
+    -fx-border-width: 1.5;
+}
+
+/* Text Area */
+.modern-textarea {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D1D5DB;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 14 16 14 16;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1F2937;
+    -fx-prompt-text-fill: #9CA3AF;
+}
+
+.modern-textarea:focused {
+    -fx-border-color: #3B82F6;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.15), 12, 0, 0, 0);
+}
+
+.modern-textarea:hover {
+    -fx-border-color: #9CA3AF;
+}
+
+.modern-textarea .content {
+    -fx-background-color: transparent;
+}
+
+.modern-textarea .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.modern-textarea .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* ComboBox/Choice Box */
+.modern-combo {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D1D5DB;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1F2937;
+    -fx-prompt-text-fill: #9CA3AF;
+    -fx-min-height: 48;
+    -fx-pref-height: 48;
+}
+
+.modern-combo:focused {
+    -fx-border-color: #3B82F6;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.15), 12, 0, 0, 0);
+}
+
+.modern-combo:hover {
+    -fx-border-color: #9CA3AF;
+}
+
+.modern-combo .list-cell {
+    -fx-text-fill: #1F2937;
+    -fx-padding: 12 16 12 16;
+    -fx-background-color: transparent;
+}
+
+.modern-combo .list-cell:hover {
+    -fx-background-color: #F3F4F6;
+}
+
+.modern-combo .arrow-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0 12 0 0;
+}
+
+.modern-combo .arrow {
+    -fx-background-color: #6B7280;
+    -fx-shape: "M7 10L12 15L17 10H7Z";
+    -fx-scale-shape: true;
+    -fx-padding: 4;
+}
+
+/* Date Picker */
+.modern-datepicker {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D1D5DB;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 14 16 14 16;
+    -fx-font-size: 14px;
+    -fx-min-height: 48;
+    -fx-pref-height: 48;
+}
+
+.modern-datepicker:focused {
+    -fx-border-color: #3B82F6;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.15), 12, 0, 0, 0);
+}
+
+.modern-datepicker:hover {
+    -fx-border-color: #9CA3AF;
+}
+
+.modern-datepicker .arrow-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Buttons */
+.btn-primary {
+    -fx-background-color: #3B82F6;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 14 24 14 24;
+    -fx-cursor: hand;
+    -fx-min-width: 140;
+    -fx-min-height: 48;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.25), 8, 0, 0, 2);
+}
+
+.btn-primary:hover {
+    -fx-background-color: #2563EB;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.35), 12, 0, 0, 4);
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #1D4ED8;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.15), 6, 0, 0, 1);
+}
+
+.btn-secondary {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #D1D5DB;
+    -fx-border-width: 1.5;
+    -fx-padding: 14 24 14 24;
+    -fx-cursor: hand;
+    -fx-min-width: 120;
+    -fx-min-height: 48;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: #9CA3AF;
+    -fx-text-fill: #374151;
+}
+
+.btn-secondary:pressed {
+    -fx-background-color: #F3F4F6;
+}
+
+.btn-success {
+    -fx-background-color: #10B981;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 14 24 14 24;
+    -fx-cursor: hand;
+    -fx-min-width: 140;
+    -fx-min-height: 48;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(16, 185, 129, 0.25), 8, 0, 0, 2);
+}
+
+.btn-success:hover {
+    -fx-background-color: #059669;
+    -fx-effect: dropshadow(gaussian, rgba(16, 185, 129, 0.35), 12, 0, 0, 4);
+}
+
+.btn-danger {
+    -fx-background-color: #EF4444;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 14 24 14 24;
+    -fx-cursor: hand;
+    -fx-min-width: 120;
+    -fx-min-height: 48;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(239, 68, 68, 0.25), 8, 0, 0, 2);
+}
+
+.btn-danger:hover {
+    -fx-background-color: #DC2626;
+    -fx-effect: dropshadow(gaussian, rgba(239, 68, 68, 0.35), 12, 0, 0, 4);
+}
+
+/* Validation States */
+.input-error {
+    -fx-border-color: #EF4444 !important;
+    -fx-border-width: 2 !important;
+    -fx-effect: dropshadow(gaussian, rgba(239, 68, 68, 0.15), 8, 0, 0, 0);
+}
+
+.input-success {
+    -fx-border-color: #10B981 !important;
+    -fx-border-width: 2 !important;
+    -fx-effect: dropshadow(gaussian, rgba(16, 185, 129, 0.15), 8, 0, 0, 0);
+}
+
+.error-text {
+    -fx-text-fill: #EF4444;
+    -fx-font-size: 12px;
+    -fx-padding: 4 0 0 4;
+}
+
+.success-text {
+    -fx-text-fill: #10B981;
+    -fx-font-size: 12px;
+    -fx-padding: 4 0 0 4;
+}
+
+/* CheckBox and RadioButton */
+.modern-checkbox {
+    -fx-text-fill: #374151;
+    -fx-font-size: 14px;
+}
+
+.modern-checkbox .box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D1D5DB;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 2;
+}
+
+.modern-checkbox:selected .box {
+    -fx-background-color: #3B82F6;
+    -fx-border-color: #3B82F6;
+}
+
+.modern-checkbox .mark {
+    -fx-background-color: #FFFFFF;
+    -fx-shape: "M9 12L11 14L15 10";
+    -fx-scale-shape: true;
+}
+
+.modern-radio {
+    -fx-text-fill: #374151;
+    -fx-font-size: 14px;
+}
+
+.modern-radio .radio {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D1D5DB;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+}
+
+.modern-radio:selected .radio {
+    -fx-background-color: #3B82F6;
+    -fx-border-color: #3B82F6;
+}
+
+.modern-radio .dot {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 50%;
+}
+
+/* Progress and Loading */
+.progress-bar {
+    -fx-background-color: #F3F4F6;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-min-height: 8;
+    -fx-pref-height: 8;
+}
+
+.progress-bar .bar {
+    -fx-background-color: #3B82F6;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
+/* Scroll Bars */
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+.scroll-bar .track {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: transparent;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #D1D5DB;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #9CA3AF;
+}
+
+.scroll-bar .thumb:pressed {
+    -fx-background-color: #6B7280;
+}
+
+/* Tooltips */
+.tooltip {
+    -fx-background-color: #1F2937;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 8;
+    -fx-font-size: 12px;
+    -fx-padding: 8 12 8 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 2);
+}
+
+/* Disabled States */
+.modern-input:disabled,
+.modern-textarea:disabled,
+.modern-combo:disabled,
+.modern-datepicker:disabled {
+    -fx-opacity: 0.5;
+    -fx-background-color: #F9FAFB;
+    -fx-text-fill: #9CA3AF;
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-success:disabled,
+.btn-danger:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+    -fx-effect: none;
+}
+
+/* Focus Ring Removal */
+.modern-input:focused,
+.modern-textarea:focused,
+.modern-combo:focused,
+.modern-datepicker:focused,
+.btn-primary:focused,
+.btn-secondary:focused,
+.btn-success:focused,
+.btn-danger:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
+/* Utility Classes */
+.mb-16 { -fx-padding: 0 0 16 0; }
+.mb-24 { -fx-padding: 0 0 24 0; }
+.mb-32 { -fx-padding: 0 0 32 0; }
+
+.mt-16 { -fx-padding: 16 0 0 0; }
+.mt-24 { -fx-padding: 24 0 0 0; }
+.mt-32 { -fx-padding: 32 0 0 0; }
+
+.p-16 { -fx-padding: 16; }
+.p-24 { -fx-padding: 24; }
+.p-32 { -fx-padding: 32; }
+
+.text-center { -fx-alignment: center; }
+.text-left { -fx-alignment: center-left; }
+.text-right { -fx-alignment: center-right; }
