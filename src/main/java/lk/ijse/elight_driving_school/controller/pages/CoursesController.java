@@ -71,10 +71,10 @@ public class CoursesController implements Initializable {
        try{
            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/components/form/CourseForm.fxml"));
            Parent customContent = loader.load();
-           loader.<CourseFormController>getController().init(this);
+           loader.<CourseFormController>getController().init(this,null);
            DialogUtil.showCustom(null, null, customContent,
                    "Save", "Cancel",
-                   () -> loader.<CourseFormController>getController().saveProject(),
+                   () -> loader.<CourseFormController>getController().handelSubmit(),
                    null);
        } catch (Exception e) {
            e.printStackTrace();
