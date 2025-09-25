@@ -28,7 +28,6 @@ import java.util.ResourceBundle;
 
 public class CoursesController implements Initializable {
 
-
     @FXML
     private TableColumn<CourseTM, Pane> colAction;
     @FXML
