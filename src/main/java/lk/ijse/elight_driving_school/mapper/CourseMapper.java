@@ -1,6 +1,7 @@
 package lk.ijse.elight_driving_school.mapper;
 
 import lk.ijse.elight_driving_school.dto.CourseDTO;
+import lk.ijse.elight_driving_school.dto.tm.CourseTM;
 import lk.ijse.elight_driving_school.entity.Course;
 
 public class CourseMapper {
@@ -32,6 +33,18 @@ public class CourseMapper {
         if (dto == null) return null;
 
         Course course = new Course();
+        course.setCourseId(dto.getCourseId());
+        course.setCourseName(dto.getCourseName());
+        course.setDuration(dto.getDuration());
+        course.setFee(dto.getFee());
+        course.setDescription(dto.getDescription());
+        return course;
+    }
+
+    public static CourseTM toTM(CourseDTO dto) {
+        if (dto == null) return null;
+
+        CourseTM course = new CourseTM();
         course.setCourseId(dto.getCourseId());
         course.setCourseName(dto.getCourseName());
         course.setDuration(dto.getDuration());
