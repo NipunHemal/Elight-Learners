@@ -18,6 +18,7 @@ module lk.ijse.elight_driving_school {
     opens lk.ijse.elight_driving_school.controller.auth to javafx.fxml;
     opens lk.ijse.elight_driving_school.controller.layout to javafx.fxml;
     opens lk.ijse.elight_driving_school.controller.component to javafx.fxml;
+    opens lk.ijse.elight_driving_school.controller.component.form to javafx.fxml;
     opens lk.ijse.elight_driving_school.controller.pages to javafx.fxml;
 
     opens lk.ijse.elight_driving_school.entity to org.hibernate.orm.core;
