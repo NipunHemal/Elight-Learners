@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import lk.ijse.elight_driving_school.controller.pages.CoursesController;
 
 public class CourseFormController {
 
@@ -41,4 +42,13 @@ public class CourseFormController {
     @FXML
     private TextField txtFree;
 
+    CoursesController coursesController;
+
+    public void init(CoursesController coursesController) {
+        this.coursesController = coursesController;
+    }
+
+    public void saveProject() {
+
+    }
 }
