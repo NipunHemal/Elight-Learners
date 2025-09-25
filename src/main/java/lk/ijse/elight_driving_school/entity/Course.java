@@ -13,7 +13,8 @@ import java.util.List;
 @Table(name = "courses")
 public class Course {
     @Id
-    private String courseId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long courseId;
 
     @Column(nullable = false)
     private String courseName;

@@ -13,7 +13,8 @@ import java.util.Date;
 @Builder
 public class Payment {
     @Id
-    private String paymentId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long paymentId;
 
     private Date paymentDate;
     private double amount;

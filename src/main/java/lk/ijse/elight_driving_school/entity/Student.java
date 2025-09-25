@@ -14,7 +14,8 @@ import java.util.List;
 @Builder
 public class Student {
     @Id
-    private String studentId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long studentId;
 
     private String firstName;
     private String lastName;

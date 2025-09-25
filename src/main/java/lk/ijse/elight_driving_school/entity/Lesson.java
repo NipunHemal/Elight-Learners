@@ -14,7 +14,8 @@ import java.util.Date;
 @Builder
 public class Lesson {
     @Id
-    private String lessonId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long lessonId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")

@@ -13,7 +13,8 @@ import java.util.List;
 @Builder
 public class Instructor {
     @Id
-    private String instructorId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long instructorId;
 
     private String firstName;
     private String lastName;
