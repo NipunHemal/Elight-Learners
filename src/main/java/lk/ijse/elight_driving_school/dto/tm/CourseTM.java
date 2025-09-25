@@ -8,10 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
 public class CourseTM {
     private String courseId;
-    private String course_name;
+    private String courseName;
     private String duration;
     private double fee;
     private String description;
