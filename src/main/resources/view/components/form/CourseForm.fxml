@@ -47,7 +47,7 @@
          <VBox spacing="6">
             <children>
                <Label styleClass="field-label" text="Description" />
-               <TextField fx:id="txtDuration" promptText="Enter Description" styleClass="modern-input" />
+               <TextField fx:id="txtDescription" promptText="Enter Description" styleClass="modern-input" />
             </children>
          </VBox>
 
