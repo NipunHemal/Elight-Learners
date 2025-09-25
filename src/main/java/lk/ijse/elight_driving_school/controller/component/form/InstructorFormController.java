@@ -5,8 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import lk.ijse.elight_driving_school.controller.pages.InstructorController;
 
-public class InstructorController {
+public class InstructorFormController {
 
     @FXML
     private Button cancelButton;
@@ -40,8 +41,15 @@ public class InstructorController {
 
     @FXML
     private TextField txtLName;
-
     @FXML
     private TextField txtSpecialization;
 
+    InstructorController instructorController;
+
+    public void saveProject() {
+    }
+
+    public void init(InstructorController instructorController) {
+        this.instructorController = instructorController;
+    }
 }
