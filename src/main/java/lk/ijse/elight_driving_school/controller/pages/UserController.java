@@ -7,38 +7,28 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class StudentController {
+public class UserController {
 
-    public TableView tableStudent;
     @FXML
     private TableColumn<?, ?> colAction;
-
-    @FXML
-    private TableColumn<?, ?> colAddress;
-
-    @FXML
-    private TableColumn<?, ?> colDob;
 
     @FXML
     private TableColumn<?, ?> colEmail;
 
     @FXML
-    private TableColumn<?, ?> colFirstname;
-
-    @FXML
     private TableColumn<?, ?> colId;
 
     @FXML
-    private TableColumn<?, ?> colLastname;
+    private TableColumn<?, ?> colRole;
 
     @FXML
-    private TableColumn<?, ?> colPhone;
+    private TableColumn<?, ?> colStatus;
 
     @FXML
-    private TableColumn<?, ?> colRegDate;
+    private TableColumn<?, ?> colUsername;
 
     @FXML
-    private TableView<?> tableCourse;
+    private TableView<?> tableUser;
 
     @FXML
     private TextField tstSearch;
