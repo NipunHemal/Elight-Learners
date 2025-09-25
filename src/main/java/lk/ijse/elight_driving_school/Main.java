@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import lk.ijse.elight_driving_school.util.DashboardNavigator;
 import lk.ijse.elight_driving_school.util.ReferenceUtils;
 
 public class Main extends Application {
@@ -20,5 +21,6 @@ public class Main extends Application {
         stage.setTitle("Elight Driving School");
         stage.show();
         ReferenceUtils.mainStackPane = mainStackPane;
+        DashboardNavigator.mainNavigator("/view/components/Table.fxml");
     }
 }
