@@ -1,6 +1,7 @@
 package lk.ijse.elight_driving_school.mapper;
 
 import lk.ijse.elight_driving_school.dto.InstructorDTO;
+import lk.ijse.elight_driving_school.dto.tm.InstructorTM;
 import lk.ijse.elight_driving_school.entity.Instructor;
 
 
@@ -32,6 +33,21 @@ public class InstructorMapper {
         if (dto == null) return null;
 
         Instructor instructor = new Instructor();
+        instructor.setInstructorId(dto.getInstructorId());
+        instructor.setFirstName(dto.getFirstName());
+        instructor.setLastName(dto.getLastName());
+        instructor.setEmail(dto.getEmail());
+        instructor.setContact(dto.getContact());
+        instructor.setSpecialization(dto.getSpecialization());
+        instructor.setAvailability(dto.getAvailability());
+
+        return instructor;
+    }
+
+    public static InstructorTM toTM(InstructorDTO dto) {
+        if (dto == null) return null;
+
+        InstructorTM instructor = new InstructorTM();
         instructor.setInstructorId(dto.getInstructorId());
         instructor.setFirstName(dto.getFirstName());
         instructor.setLastName(dto.getLastName());

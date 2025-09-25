@@ -1,6 +1,7 @@
 package lk.ijse.elight_driving_school.mapper;
 
 import lk.ijse.elight_driving_school.dto.PaymentsDTO;
+import lk.ijse.elight_driving_school.dto.tm.PaymentsTM;
 import lk.ijse.elight_driving_school.entity.Payment;
 
 public class PaymentMapper {
@@ -23,6 +24,18 @@ public class PaymentMapper {
         if (dto == null) return null;
 
         Payment payment = new Payment();
+        payment.setPaymentId(dto.getPaymentId());
+        payment.setPaymentDate(dto.getPaymentDate());
+        payment.setAmount(dto.getAmount());
+        payment.setPaymentMethod(dto.getPaymentMethod());
+        payment.setStatus(dto.getStatus());
+        return payment;
+    }
+
+    public static PaymentsTM toTM(PaymentsTM dto){
+        if (dto == null) return null;
+
+        PaymentsTM payment = new PaymentsTM();
         payment.setPaymentId(dto.getPaymentId());
         payment.setPaymentDate(dto.getPaymentDate());
         payment.setAmount(dto.getAmount());

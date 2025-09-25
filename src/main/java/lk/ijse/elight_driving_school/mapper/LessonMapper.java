@@ -1,6 +1,8 @@
 package lk.ijse.elight_driving_school.mapper;
 
+import lk.ijse.elight_driving_school.dto.InstructorDTO;
 import lk.ijse.elight_driving_school.dto.LessonsDTO;
+import lk.ijse.elight_driving_school.dto.tm.LessonsTM;
 import lk.ijse.elight_driving_school.entity.Lesson;
 
 public class LessonMapper {
@@ -29,6 +31,18 @@ public class LessonMapper {
         lesson.setLessonDate(dto.getLessonDate());
         lesson.setStartTime(dto.getStartTime());
         lesson.setEndTime(dto.getEndTime());
+        lesson.setStatus(dto.getStatus());
+        return lesson;
+    }
+
+    public static LessonsTM toTM(LessonsDTO dto){
+        if (dto == null) return null;
+
+        LessonsTM lesson = new LessonsTM();
+        lesson.setLessonId(dto.getLessonId());
+        lesson.setLessonDate(dto.getLessonDate());
+        lesson.setStartTime(dto.getStartTime().toString());
+        lesson.setEndTime(dto.getEndTime().toString());
         lesson.setStatus(dto.getStatus());
         return lesson;
     }
