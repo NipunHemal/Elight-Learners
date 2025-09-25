@@ -20,5 +20,7 @@ module lk.ijse.elight_driving_school {
     opens lk.ijse.elight_driving_school.controller.component to javafx.fxml;
     opens lk.ijse.elight_driving_school.controller.pages to javafx.fxml;
 
+    opens lk.ijse.elight_driving_school.entity to org.hibernate.orm.core;
+
     exports lk.ijse.elight_driving_school;
 }
