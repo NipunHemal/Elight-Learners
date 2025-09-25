@@ -32,7 +32,8 @@ public class FactoryConfig {
 
             sessionFactory = configuration.buildSessionFactory();
 
-        }catch (Exception e){
+        } catch (Exception e){
+            e.printStackTrace();
             throw new RuntimeException("Error initializing Hibernate SessionFactory", e);
         }
     }
