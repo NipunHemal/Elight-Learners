@@ -50,4 +50,12 @@ public class DashboardLayoutController implements Initializable {
             DashboardNavigator.mainNavigator("/view/auth/Login.fxml");
         }
     }
+
+    public void onActionPayment(ActionEvent actionEvent) {
+        DashboardNavigator.navigate("Payment");
+    }
+
+    public void onActionUser(ActionEvent actionEvent) {
+        DashboardNavigator.navigate("User");
+    }
 }

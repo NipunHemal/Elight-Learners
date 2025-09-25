@@ -43,8 +43,10 @@
                         </styleClass></Button>
                     <Button onAction="#onActionInstructor" styleClass="menu-item" text="Instructor" />
                     <Button onAction="#onActionStudents" styleClass="menu-item" text="Students" />
-                    <Button onAction="#onActionCourses" styleClass="menu-item" text="Courses" />
                     <Button onAction="#onActionLessons" styleClass="menu-item" text="Lessons" />
+               <Button onAction="#onActionPayment" styleClass="menu-item" text="Payment" />
+               <Button onAction="#onActionUser" styleClass="menu-item" text="User" />
+               <Button onAction="#onActionCourses" styleClass="menu-item" text="Courses" />
                     <!--                    <Button styleClass="menu-item" text="Reports" />-->
                 </VBox>
 
