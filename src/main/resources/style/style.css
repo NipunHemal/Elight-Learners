@@ -2,7 +2,6 @@
 
 /* Root and Base Styles */
 .root {
-    -fx-background-color: #F8FAFC;
     -fx-font-family: "Segoe UI", "Inter", "Roboto", "Helvetica Neue", sans-serif;
     -fx-font-size: 14px;
 }
@@ -13,7 +12,7 @@
     -fx-background-radius: 16;
     -fx-border-radius: 16;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 20, 0, 0, 4);
-    -fx-padding: 32;
+    /*-fx-padding: 32;*/
 }
 
 .card {
