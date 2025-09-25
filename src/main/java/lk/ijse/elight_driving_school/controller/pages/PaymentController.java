@@ -2,18 +2,30 @@ package lk.ijse.elight_driving_school.controller.pages;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import lk.ijse.elight_driving_school.controller.component.form.CourseFormController;
+import lk.ijse.elight_driving_school.controller.component.form.PaymentFormController;
+import lk.ijse.elight_driving_school.dto.PaymentsDTO;
 import lk.ijse.elight_driving_school.dto.tm.PaymentsTM;
+import lk.ijse.elight_driving_school.enums.ServiceTypes;
+import lk.ijse.elight_driving_school.mapper.InstructorMapper;
+import lk.ijse.elight_driving_school.mapper.PaymentMapper;
+import lk.ijse.elight_driving_school.service.ServiceFactory;
+import lk.ijse.elight_driving_school.service.custom.PaymentsService;
+import lk.ijse.elight_driving_school.util.DialogUtil;
 import lk.ijse.elight_driving_school.util.NotificationUtils;
 
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PaymentController implements Initializable {
@@ -23,7 +35,7 @@ public class PaymentController implements Initializable {
     private TableColumn<PaymentsTM , Pane> colAction;
 
     @FXML
-        private TableColumn<PaymentsTM , Double> colAmount;
+    private TableColumn<PaymentsTM , Double> colAmount;
 
     @FXML
     private TableColumn<PaymentsTM , String> colId;
@@ -46,6 +58,8 @@ public class PaymentController implements Initializable {
     @FXML
     private Label txtCourseCount;
 
+    PaymentsService paymentsService = ServiceFactory.getInstance().getService(ServiceTypes.PAYMENTS);
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
@@ -67,12 +81,32 @@ public class PaymentController implements Initializable {
     }
 
     private void loadPayments() {
+        try {
+            tablePayment.getItems().clear();
+            java.util.List<PaymentsDTO> payments = paymentsService.getAllPayments();
+            tablePayment.getItems().addAll(payments.stream().map(PaymentMapper::toTM).toList());
+//            tablePayment.getItems().addAll(List.copyOf(payments.stream().map(PaymentMapper::toTM).toList()));
+            txtCourseCount.setText(String.valueOf(payments.size()));
 
+        } catch (Exception e) {
+            NotificationUtils.showError("Error Loading Payments", e.getMessage());
+        }
     }
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
-
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/components/form/PaymentForm.fxml"));
+            Parent customContent = loader.load();
+            loader.<PaymentFormController>getController().init(this,null);
+            DialogUtil.showCustom(null, null, customContent,
+                    "Save", "Cancel",
+                    () -> loader.<PaymentFormController>getController().saveProject(),
+                    null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            NotificationUtils.showError("Error Loading Form", e.getMessage());
+        }
     }
 
 }
