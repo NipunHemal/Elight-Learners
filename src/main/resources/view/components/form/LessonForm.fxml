@@ -1,92 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elight_driving_school.controller.component.form.LessonFormController">
 
-    <VBox alignment="TOP_CENTER" spacing="0" styleClass="root" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <padding>
-            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-        </padding>
 
-        <!-- Form Header -->
-        <VBox spacing="0" styleClass="arrow">
-            <Label fx:id="lblFormTitle" styleClass="form-title" text="Create Lesson" />
-            <Label fx:id="lblFormSubTitle" prefHeight="51.0" prefWidth="403.0" styleClass="form-subtitle" text="Please fill in the information below to add the lesson" />
-            <HBox>
-                <children>
-                    <VBox spacing="6">
-                        <children>
-                            <Label styleClass="field-label" text="Student" />
-                            <ComboBox fx:id="cmbStudent" promptText="Select Student" styleClass="modern-combo" visibleRowCount="20" VBox.vgrow="ALWAYS" />
-                        </children>
-                    </VBox>
-                    <VBox spacing="6">
-                        <children>
-                            <Label styleClass="field-label" text="Course" />
-                            <ComboBox fx:id="cmbCourse" promptText="Select Course" styleClass="modern-combo" visibleRowCount="20" VBox.vgrow="ALWAYS" />
-                        </children>
-                        <HBox.margin>
-                            <Insets left="207.0" />
-                        </HBox.margin>
-                    </VBox>
-                </children>
-            </HBox>
-        </VBox>
+ <VBox alignment="TOP_CENTER" spacing="0" styleClass="root" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elight_driving_school.controller.component.form.LessonFormController">
 
-        <!-- Personal Information Section -->
-        <VBox spacing="16" styleClass="mb-32">
+     <!-- Form Header -->
+     <VBox spacing="0" styleClass="arrow">
+         <Label fx:id="lblFormTitle" styleClass="form-title" text="Create Lesson" />
+         <HBox>
+             <children>
+                 <VBox spacing="6" HBox.hgrow="ALWAYS">
+                     <children>
+                         <Label styleClass="field-label" text="Student" />
+                         <ComboBox fx:id="cmbStudent" promptText="Select Student" styleClass="modern-combo" visibleRowCount="20" VBox.vgrow="ALWAYS" />
+                     </children>
+                 </VBox>
+                 <VBox spacing="6" HBox.hgrow="ALWAYS">
+                     <children>
+                         <Label styleClass="field-label" text="Course" />
+                         <ComboBox fx:id="cmbCourse" promptText="Select Course" styleClass="modern-combo" visibleRowCount="20" VBox.vgrow="ALWAYS" />
+                     </children>
+                     <HBox.margin>
+                         <Insets left="207.0" />
+                     </HBox.margin>
+                 </VBox>
+             </children>
+         </HBox>
+     </VBox>
 
-            <!-- Name Fields Row -->
-            <HBox spacing="16" />
+     <!-- Personal Information Section -->
+     <VBox spacing="16" styleClass="mb-32">
 
-            <!-- Date of Birth -->
-            <VBox spacing="6">
-                <children>
-                    <Label styleClass="field-label" text="Instrucrure" />
-                    <ComboBox fx:id="cmbInstrucre" promptText="Select Instructor" styleClass="modern-combo" visibleRowCount="20" VBox.vgrow="ALWAYS" />
-                    <VBox spacing="6">
-                        <children>
-                            <Label styleClass="field-label" text="Lesson Date" />
-                            <DatePicker fx:id="lessonDatePicker" promptText="Select your lesson date" styleClass="modern-datepicker" />
-                        </children>
-                    </VBox>
-                </children>
-            </VBox>
+         <!-- Name Fields Row -->
+         <HBox spacing="16" />
 
-            <!-- Phone Field -->
-            <VBox spacing="6">
-                <Label styleClass="field-label" text="Start Time" />
-                <TextField fx:id="txtStartTime" promptText="Enter lesson start time" styleClass="modern-input" />
-            </VBox>
-            <VBox spacing="6">
-                <children>
-                    <Label styleClass="field-label" text="End Time" />
-                    <TextField fx:id="txtEndTime" promptText="Enter lesson end time" styleClass="modern-input" />
-                </children>
-            </VBox>
-            <VBox spacing="6">
-                <children>
-                    <Label styleClass="field-label" text="Status" />
-                    <TextField fx:id="txtStatus" promptText="Enter status" styleClass="modern-input" />
-                </children>
-            </VBox>
-        </VBox>
+         <!-- Date of Birth -->
+         <VBox spacing="6">
+             <children>
+                 <Label styleClass="field-label" text="Instrucrure" />
+                 <ComboBox fx:id="cmbInstrucre" promptText="Select Instructor" styleClass="modern-combo" visibleRowCount="20" VBox.vgrow="ALWAYS" />
+                 <VBox spacing="6">
+                     <children>
+                         <Label styleClass="field-label" text="Lesson Date" />
+                         <DatePicker fx:id="lessonDatePicker" promptText="Select your lesson date" styleClass="modern-datepicker" />
+                     </children>
+                 </VBox>
+             </children>
+         </VBox>
 
-        <!-- Action Buttons -->
-        <HBox alignment="CENTER_RIGHT" spacing="16" styleClass="mt-24">
-            <Button fx:id="cancelButton" mnemonicParsing="false" styleClass="btn-secondary" text="Cancel" />
-            <Button fx:id="clearButton" mnemonicParsing="false" styleClass="btn-secondary" text="Clear Form" />
-            <Button fx:id="saveButton" mnemonicParsing="false" styleClass="btn-primary" text="Create Lesson" />
-        </HBox>
-    </VBox>
-
-</AnchorPane>
+         <!-- Phone Field -->
+         <VBox spacing="6">
+             <Label styleClass="field-label" text="Start Time" />
+             <TextField fx:id="txtStartTime" promptText="Enter lesson start time" styleClass="modern-input" />
+         </VBox>
+         <VBox spacing="6">
+             <children>
+                 <Label styleClass="field-label" text="End Time" />
+                 <TextField fx:id="txtEndTime" promptText="Enter lesson end time" styleClass="modern-input" />
+             </children>
+         </VBox>
+         <VBox spacing="6">
+             <children>
+                 <Label styleClass="field-label" text="Status" />
+                 <TextField fx:id="txtStatus" promptText="Enter status" styleClass="modern-input" />
+             </children>
+         </VBox>
+     </VBox>
+ </VBox>
