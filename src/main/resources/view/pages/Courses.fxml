@@ -16,9 +16,6 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elight_driving_school.controller.pages.CoursesController">
    <VBox styleClass="main-container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
-      <!-- Breadcrumb -->
-      <HBox styleClass="breadcrumb-container" />
-
       <!-- Header -->
       <HBox alignment="CENTER_LEFT" styleClass="header-container">
          <Label fx:id="txtCourseCount" styleClass="page-title" text="Course(1000)" />
@@ -53,17 +50,17 @@
             <TableColumn fx:id="colId" prefWidth="40" styleClass="checkbox-column" text="Id" />
 
             <!-- Account Column -->
-            <TableColumn fx:id="colAccount" prefWidth="250" styleClass="account-column" text="Name">
+            <TableColumn fx:id="colName" prefWidth="250" styleClass="account-column" text="Name">
                <cellFactory>
                   <!--                        <fx:reference source="accountCellFactory" />-->
                </cellFactory>
             </TableColumn>
 
             <!-- Projects Column -->
-            <TableColumn fx:id="colProjects" prefWidth="80" styleClass="projects-column" text="Free" />
+            <TableColumn fx:id="colFree" prefWidth="80" styleClass="projects-column" text="Free" />
 
             <!-- Access Expires Column -->
-            <TableColumn fx:id="cplAccessExpire" prefWidth="120" styleClass="expires-column" text="Desctiption" />
+            <TableColumn fx:id="colDescription" prefWidth="120" styleClass="expires-column" text="Desctiption" />
 
             <!-- Actions Column -->
             <TableColumn prefWidth="60" styleClass="actions-column">
