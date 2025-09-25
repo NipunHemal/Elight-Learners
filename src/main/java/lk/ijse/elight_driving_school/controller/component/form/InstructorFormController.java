@@ -58,7 +58,7 @@ public class InstructorFormController implements Initializable {
     private TextField txtSpecialization;
 
     InstructorController instructorController;
-    InstructorDTO instructorDTO;
+    InstructorDTO mainInstructorDTO;
     InstructorService instructorService = ServiceFactory.getInstance().getService(ServiceTypes.INSTRUCTOR);
 
     @Override
@@ -73,25 +73,24 @@ public class InstructorFormController implements Initializable {
 
     public void init(InstructorController instructorController,InstructorDTO instructorDTO) {
         this.instructorController = instructorController;
-        this.instructorDTO = instructorDTO;
+        this.mainInstructorDTO = instructorDTO;
         handelUpdateCreate();
     }
 
     private void handelUpdateCreate(){
-        if (instructorDTO != null) {
+        if (mainInstructorDTO != null) {
             lblFormTitle.setText("Update Instructor");
-            txtFName.setText(instructorDTO.getFirstName());
-            txtLName.setText(instructorDTO.getLastName());
-            txtEmail.setText(instructorDTO.getEmail());
-            txtContact.setText(instructorDTO.getContact());
-            txtSpecialization.setText(instructorDTO.getSpecialization());
-            cmbAvailability.getSelectionModel().select(instructorDTO.getAvailability());
+            txtFName.setText(mainInstructorDTO.getFirstName());
+            txtLName.setText(mainInstructorDTO.getLastName());
+            txtEmail.setText(mainInstructorDTO.getEmail());
+            txtContact.setText(mainInstructorDTO.getContact());
+            txtSpecialization.setText(mainInstructorDTO.getSpecialization());
+            cmbAvailability.getSelectionModel().select(mainInstructorDTO.getAvailability());
         }  else {
             lblFormTitle.setText("Add New Instructor");
             clearFields();
         }
     }
-
 
     public void clearFields() {
         txtFName.clear();
@@ -116,7 +115,7 @@ public class InstructorFormController implements Initializable {
     }
 
     public void handelSubmit(){
-        if (instructorDTO != null) {
+        if (mainInstructorDTO != null) {
             updateProject();
         } else {
             saveProject();
