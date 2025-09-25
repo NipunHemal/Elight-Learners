@@ -9,10 +9,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import lk.ijse.elight_driving_school.controller.pages.LessonsController;
 import lk.ijse.elight_driving_school.dto.CourseDTO;
 import lk.ijse.elight_driving_school.dto.InstructorDTO;
 import lk.ijse.elight_driving_school.dto.StudentDTO;
 import lk.ijse.elight_driving_school.dto.LessonsDTO;
+import lk.ijse.elight_driving_school.entity.Instructor;
 import lk.ijse.elight_driving_school.enums.ServiceTypes;
 import lk.ijse.elight_driving_school.service.ServiceFactory;
 import lk.ijse.elight_driving_school.service.custom.CourseService;
@@ -25,6 +27,7 @@ import lk.ijse.elight_driving_school.util.ValidationUtils;
 
 import java.net.URL;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -38,13 +41,13 @@ public class LessonFormController implements Initializable {
     private Button clearButton;
 
     @FXML
-    private ComboBox<?> cmbCourse;
+    private ComboBox<CourseDTO> cmbCourse;
 
     @FXML
-    private ComboBox<?> cmbInstrucre;
+    private ComboBox<InstructorDTO> cmbInstrucre;
 
     @FXML
-    private ComboBox<?> cmbStudent;
+    private ComboBox<StudentDTO> cmbStudent;
 
     @FXML
     private Label lblFormSubTitle;
@@ -67,6 +70,9 @@ public class LessonFormController implements Initializable {
     @FXML
     private TextField txtStatus;
 
+    LessonsController lessonsController;
+    LessonsDTO lessonsDTO;
+
     LessonsService lessonsService = ServiceFactory.getInstance().getService(ServiceTypes.LESSONS);
     CourseService courseService = ServiceFactory.getInstance().getService(ServiceTypes.COURSE);
     InstructorService instructorService = ServiceFactory.getInstance().getService(ServiceTypes.INSTRUCTOR);
@@ -81,6 +87,28 @@ public class LessonFormController implements Initializable {
             NotificationUtils.showError("Error", "Error Loading Lesson Form Data");
         }
     }
+
+    public void init(LessonsController lessonsController , LessonsDTO lessonsDTO) {
+        this.lessonsController = lessonsController;
+        this.lessonsDTO = lessonsDTO;
+        handelUpdateCreate();
+    }
+    private void handelUpdateCreate(){
+        if (lessonsDTO != null) {
+            lblFormTitle.setText("Update Instructor");
+            txtStartTime.setText(lessonsDTO.getStartTime().toString());
+            txtEndTime.setText(lessonsDTO.getEndTime().toString());
+            txtStatus.setText(lessonsDTO.getStatus());
+            lessonDatePicker.setValue(LocalDate.parse(lessonsDTO.getLessonDate().toString()));
+            cmbCourse.getSelectionModel().select(Integer.parseInt(lessonsDTO.getCourseId()));
+            cmbInstrucre.getSelectionModel().select(Integer.parseInt(lessonsDTO.getInstructorId()));
+            cmbStudent.getSelectionModel().select(Integer.parseInt(lessonsDTO.getStudentId()));
+        }  else {
+            lblFormTitle.setText("Add New Instructor");
+            clearFields();
+        }
+    }
+
 
     public void clearFields() {
         txtStartTime.clear();
@@ -104,6 +132,14 @@ public class LessonFormController implements Initializable {
             return false;
         }
         return true;
+    }
+
+    void handelSubmit(){
+        if (lessonsDTO != null) {
+            updateProject();
+        } else {
+            saveProject();
+        }
     }
 
     public void saveProject() {
@@ -134,6 +170,41 @@ public class LessonFormController implements Initializable {
                 }
             } catch (Exception e) {
                 AlertUtils.showError("Error", "Failed to add lesson : " + e.getMessage());
+                throw new RuntimeException(e);
+            }
+        } else {
+            NotificationUtils.showError("Validation Error", "Please fill all the fields correctly.");
+        }
+    }
+
+    public void updateProject() {
+        CourseDTO selectedCourse = (CourseDTO) cmbCourse.getSelectionModel().getSelectedItem();
+        InstructorDTO selectedInstructor = (InstructorDTO) cmbInstrucre.getSelectionModel().getSelectedItem();
+        StudentDTO selectedStudent = (StudentDTO) cmbStudent.getSelectionModel().getSelectedItem();
+        Date lessonDate = java.sql.Date.valueOf(lessonDatePicker.getValue());
+        Time startTime = Time.valueOf(txtStartTime.getText());
+        Time endTime = Time.valueOf(txtEndTime.getText());
+        String status = txtStatus.getText();
+        if (validateForm()) {
+            LessonsDTO lessonsDTO = LessonsDTO.builder()
+                    .courseId(selectedCourse.getCourseId())
+                    .instructorId(selectedInstructor.getInstructorId())
+                    .studentId(selectedStudent.getStudentId())
+                    .lessonDate(lessonDate)
+                    .startTime(startTime)
+                    .endTime(endTime)
+                    .status(status)
+                    .build();
+            try {
+                boolean isSave = lessonsService.updateLessons(lessonsDTO);
+                if (isSave) {
+                    AlertUtils.showSuccess("Success", "Lesson update successfully.");
+                    clearFields();
+                } else {
+                    AlertUtils.showError("Error", "Failed to update lesson.");
+                }
+            } catch (Exception e) {
+                AlertUtils.showError("Error", "Failed to update lesson : " + e.getMessage());
                 throw new RuntimeException(e);
             }
         } else {
