@@ -10,13 +10,13 @@ public class CourseMapper {
         if (course == null) return null;
 
         return CourseDTO.builder()
-                .courseId(course.getCourseId())
+                .courseId(String.valueOf(course.getCourseId()))
                 .courseName(course.getCourseName())
                 .duration(course.getDuration())
-                .fee(course.getFee())
+                .free(course.getFee())
                 .description(course.getDescription())
                 .instructorId(
-                        course.getInstructor() != null ? course.getInstructor().getInstructorId() : null
+                        course.getInstructor() != null ? course.getInstructor().getInstructorId().toString() : null
                 )
                 .studentCourseDetails(
                         course.getStudentCourseDetails().stream()
@@ -33,10 +33,10 @@ public class CourseMapper {
         if (dto == null) return null;
 
         Course course = new Course();
-        course.setCourseId(dto.getCourseId());
+        course.setCourseId(Long.parseLong(dto.getCourseId()));
         course.setCourseName(dto.getCourseName());
         course.setDuration(dto.getDuration());
-        course.setFee(dto.getFee());
+        course.setFee(dto.getFree());
         course.setDescription(dto.getDescription());
         return course;
     }
@@ -48,7 +48,7 @@ public class CourseMapper {
         course.setCourseId(dto.getCourseId());
         course.setCourseName(dto.getCourseName());
         course.setDuration(dto.getDuration());
-        course.setFee(dto.getFee());
+        course.setFee(dto.getFree());
         course.setDescription(dto.getDescription());
         return course;
     }

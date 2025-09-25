@@ -10,12 +10,12 @@ public class PaymentMapper {
         if (payment == null) return null;
 
         PaymentsDTO dto = new PaymentsDTO();
-        dto.setPaymentId(payment.getPaymentId());
+        dto.setPaymentId(payment.getPaymentId().toString());
         dto.setPaymentDate(payment.getPaymentDate());
         dto.setAmount(payment.getAmount());
         dto.setPaymentMethod(payment.getPaymentMethod());
         dto.setStatus(payment.getStatus());
-        dto.setStudentId(payment.getStudent() != null ? payment.getStudent().getStudentId() : null);
+        dto.setStudentId(payment.getStudent() != null ? payment.getStudent().getStudentId().toString() : null);
 
         return dto;
     }
@@ -24,7 +24,7 @@ public class PaymentMapper {
         if (dto == null) return null;
 
         Payment payment = new Payment();
-        payment.setPaymentId(dto.getPaymentId());
+        payment.setPaymentId(Long.parseLong(dto.getPaymentId()));
         payment.setPaymentDate(dto.getPaymentDate());
         payment.setAmount(dto.getAmount());
         payment.setPaymentMethod(dto.getPaymentMethod());

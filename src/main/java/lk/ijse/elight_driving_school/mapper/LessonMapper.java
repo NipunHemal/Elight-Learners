@@ -12,10 +12,10 @@ public class LessonMapper {
         if (lesson == null) return null;
 
         LessonsDTO dto = new LessonsDTO();
-        dto.setLessonId(lesson.getLessonId());
-        dto.setCourseId(lesson.getCourse() != null ? lesson.getCourse().getCourseId() : null);
-        dto.setStudentId(lesson.getStudent() != null ? lesson.getStudent().getStudentId() : null);
-        dto.setInstructorId(lesson.getInstructor() != null ? lesson.getInstructor().getInstructorId() : null);
+        dto.setLessonId(lesson.getLessonId().toString());
+        dto.setCourseId(lesson.getCourse() != null ? lesson.getCourse().getCourseId().toString() : null);
+        dto.setStudentId(lesson.getStudent() != null ? lesson.getStudent().getStudentId().toString() : null);
+        dto.setInstructorId(lesson.getInstructor() != null ? lesson.getInstructor().getInstructorId().toString() : null);
         dto.setLessonDate(lesson.getLessonDate());
         dto.setStartTime(lesson.getStartTime());
         dto.setEndTime(lesson.getEndTime());
@@ -27,7 +27,7 @@ public class LessonMapper {
         if (dto == null) return null;
 
         Lesson lesson = new Lesson();
-        lesson.setLessonId(dto.getLessonId());
+        lesson.setLessonId(Long.parseLong(dto.getLessonId()));
         lesson.setLessonDate(dto.getLessonDate());
         lesson.setStartTime(dto.getStartTime());
         lesson.setEndTime(dto.getEndTime());

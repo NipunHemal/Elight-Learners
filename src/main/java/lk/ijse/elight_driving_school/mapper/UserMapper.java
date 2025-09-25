@@ -10,7 +10,7 @@ public class UserMapper {
         if (user == null) return null;
 
         return UserDTO.builder()
-                .userId(user.getUserId())
+                .userId(user.getUserId().toString())
                 .username(user.getUsername())
                 .password(user.getPassword())
                 .role(user.getRole())
@@ -23,7 +23,7 @@ public class UserMapper {
         if (dto == null) return null;
 
         User user = new User();
-        user.setUserId(dto.getUserId());
+        user.setUserId(Long.parseLong(dto.getUserId()));
         user.setUsername(dto.getUsername());
         user.setPassword(dto.getPassword());
         user.setRole(dto.getRole());

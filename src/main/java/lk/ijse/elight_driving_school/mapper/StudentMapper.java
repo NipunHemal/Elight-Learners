@@ -10,7 +10,7 @@ public class StudentMapper {
         if (student == null) return null;
 
         return StudentDTO.builder()
-                .studentId(student.getStudentId())
+                .studentId(student.getStudentId().toString())
                 .firstName(student.getFirstName())
                 .lastName(student.getLastName())
                 .email(student.getEmail())
@@ -37,7 +37,7 @@ public class StudentMapper {
         if (dto == null) return null;
 
         Student student = new Student();
-        student.setStudentId(dto.getStudentId());
+        student.setStudentId(Long.parseLong(dto.getStudentId()));
         student.setFirstName(dto.getFirstName());
         student.setLastName(dto.getLastName());
         student.setEmail(dto.getEmail());
