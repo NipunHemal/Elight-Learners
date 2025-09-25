@@ -14,14 +14,14 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elight_driving_school.controller.pages.CoursesController">
-   <VBox styleClass="main-container">
+   <VBox styleClass="main-container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
       <!-- Breadcrumb -->
       <HBox styleClass="breadcrumb-container" />
 
       <!-- Header -->
       <HBox alignment="CENTER_LEFT" styleClass="header-container">
-         <Label styleClass="page-title" text="Members (1000)" />
+         <Label fx:id="txtCourseCount" styleClass="page-title" text="Course(1000)" />
          <Region HBox.hgrow="ALWAYS" />
          <Button onAction="#btnAddOnAction" text="Add member">
             <styleClass>
@@ -40,14 +40,14 @@
          <!-- Search Box -->
          <HBox alignment="CENTER_LEFT" styleClass="search-container">
             <Label styleClass="search-icon" text="🔍" />
-            <TextField promptText="Search" styleClass="search-field" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="tstSearch" promptText="Search" styleClass="search-field" HBox.hgrow="ALWAYS" />
          </HBox>
 
          <Region HBox.hgrow="ALWAYS" />
       </HBox>
 
       <!-- Table -->
-      <TableView fx:id="membersTable" styleClass="members-table">
+      <TableView fx:id="tableCourse" styleClass="members-table" VBox.vgrow="ALWAYS">
          <columns>
             <!-- Checkbox Column -->
             <TableColumn fx:id="colId" prefWidth="40" styleClass="checkbox-column" text="Id" />
@@ -79,6 +79,9 @@
                </cellFactory>
             </TableColumn>
          </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
 
    </VBox>
