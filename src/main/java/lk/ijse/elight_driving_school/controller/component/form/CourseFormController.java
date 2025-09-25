@@ -38,7 +38,7 @@ public class CourseFormController implements Initializable {
     private TextField txtFree;
 
     CoursesController coursesController;
-    CourseDTO courseDTO;
+    CourseDTO mainCourseDTO;
     CourseService courseService = ServiceFactory.getInstance().getService(ServiceTypes.COURSE);
 
     @Override
@@ -53,18 +53,18 @@ public class CourseFormController implements Initializable {
 
     public void init(CoursesController coursesController,CourseDTO courseDTO) {
         this.coursesController = coursesController;
-        this.courseDTO = courseDTO;
+        this.mainCourseDTO = courseDTO;
         handelUpdateCreate();
     }
 
     private void handelUpdateCreate(){
-        if (courseDTO != null) {
+        if (mainCourseDTO != null) {
             lblFormTitle.setText("Update Course");
-            txtCourseName.setText(courseDTO.getCourseName());
-            txtDescription.setText(courseDTO.getDescription());
-            txtDuration.setText(courseDTO.getDuration());
-            txtFree.setText(String.valueOf(courseDTO.getFree()));
-            cmbInstrucre.getSelectionModel().select(courseDTO);
+            txtCourseName.setText(mainCourseDTO.getCourseName());
+            txtDescription.setText(mainCourseDTO.getDescription());
+            txtDuration.setText(mainCourseDTO.getDuration());
+            txtFree.setText(String.valueOf(mainCourseDTO.getFree()));
+            cmbInstrucre.getSelectionModel().select(mainCourseDTO);
         }  else {
             lblFormTitle.setText("Add New Course");
             clearFields();
@@ -95,7 +95,7 @@ public class CourseFormController implements Initializable {
 
 
     public void handelSubmit(){
-        if (courseDTO != null) {
+        if (mainCourseDTO != null) {
             updateProject();
         } else {
             saveProject();
