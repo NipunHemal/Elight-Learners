@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elight_driving_school.controller.pages.InstructorController">
     <children>
         <Label layoutX="252.0" layoutY="182.0" prefHeight="35.0" prefWidth="94.0" text="Instructor">
@@ -83,7 +82,7 @@
             <TableColumn fx:id="colAvailability" prefWidth="75.0" text="availability " />
 
                 <!-- Delete Column -->
-                <TableColumn fx:id="p" prefWidth="60" styleClass="delete-column" text="Action">
+                <TableColumn fx:id="colAction" prefWidth="60" styleClass="delete-column" text="Action">
                     <cellFactory>
                         <!--                        <fx:reference source="deleteCellFactory" />-->
                     </cellFactory>
