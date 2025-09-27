@@ -30,16 +30,7 @@ public class InstructorServiceImpl implements InstructorService {
     }
 
     @Override
-    public String getLastInstructorId() throws Exception {
-        return instructorDAO.getLastId();
-    }
-
-    @Override
     public boolean saveInstructors(InstructorDTO t) throws Exception {
-        Optional<Instructor> instructors = instructorDAO.findById(t.getInstructorId());
-        if (instructors.isPresent()) {
-            throw new Exception("Instructor already exists");
-        }
         return instructorDAO.save(InstructorMapper.toEntity(t));
     }
 
@@ -70,10 +61,5 @@ public class InstructorServiceImpl implements InstructorService {
     public Optional<InstructorDTO> findByInstructorId(String id) throws Exception {
         Optional<Instructor> instructors = instructorDAO.findById(id);
         return instructors.map(InstructorMapper::toDTO);
-    }
-
-    @Override
-    public String generateNewInstructorsId() {
-        return instructorDAO.generateNewId();
     }
 }

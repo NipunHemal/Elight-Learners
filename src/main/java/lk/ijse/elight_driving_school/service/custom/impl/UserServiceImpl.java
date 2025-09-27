@@ -30,18 +30,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String getLastUserId() throws Exception {
-        return userDAO.getLastId();
-    }
-
-    @Override
     public boolean saveUsers(UserDTO t) throws Exception {
-        Optional<User> user = userDAO.findById(t.getUserId());
-        if (user.isPresent()) {
-            throw new DuplicateException("User already exists");
-        }
         return userDAO.save(UserMapper.toEntity(t));
-
     }
 
     @Override
@@ -71,11 +61,6 @@ public class UserServiceImpl implements UserService {
     public Optional<UserDTO> findByUserId(String id) throws Exception {
         Optional<User> user = userDAO.findById(id);
         return user.map(UserMapper::toDTO);
-    }
-
-    @Override
-    public String generateNextUserId() {
-        return userDAO.generateNewId();
     }
 
     @Override

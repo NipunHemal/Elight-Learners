@@ -2,12 +2,13 @@ package lk.ijse.elight_driving_school.controller.layout;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lk.ijse.elight_driving_school.util.AlertUtils;
+import lk.ijse.elight_driving_school.util.AuthUtil;
 import lk.ijse.elight_driving_school.util.DashboardNavigator;
 import lk.ijse.elight_driving_school.util.NotificationUtils;
-import org.controlsfx.control.Notifications;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,16 +16,23 @@ import java.util.ResourceBundle;
 public class DashboardLayoutController implements Initializable {
     public StackPane breadcrumbContainer;
     public AnchorPane dashboardContainer;
+    public Button btnDashboard;
+    public Button btnInstructor;
+    public Button btnStudent;
+    public Button btnLesson;
+    public Button btnPayment;
+    public Button btnUser;
+    public Button btnCourse;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DashboardNavigator.init(dashboardContainer, breadcrumbContainer);
         try {
             DashboardNavigator.navigate("Dashboard");
+            recreation();
         } catch (Exception e) {
-            NotificationUtils.showError("Error", e.getMessage());
-//            Notifications.create().title("Error").text(e.getMessage()).show();
             e.printStackTrace();
+            NotificationUtils.showError("Error", e.getMessage());
         }
     }
 
@@ -57,5 +65,17 @@ public class DashboardLayoutController implements Initializable {
 
     public void onActionUser(ActionEvent actionEvent) {
         DashboardNavigator.navigate("User");
+    }
+
+    public void recreation(){
+        if (AuthUtil.getCurrentUser() == null){
+            DashboardNavigator.mainNavigator("/view/auth/Login.fxml");
+        }
+
+        if (AuthUtil.getRole() != "ADMIN"){
+            btnCourse.setVisible(false);
+            btnInstructor.setVisible(false);
+            btnUser.setVisible(false);
+        }
     }
 }

@@ -14,6 +14,7 @@ import lk.ijse.elight_driving_school.enums.ServiceTypes;
 import lk.ijse.elight_driving_school.service.ServiceFactory;
 import lk.ijse.elight_driving_school.service.custom.InstructorService;
 import lk.ijse.elight_driving_school.util.AlertUtils;
+import lk.ijse.elight_driving_school.util.DialogUtil;
 import lk.ijse.elight_driving_school.util.NotificationUtils;
 import lk.ijse.elight_driving_school.util.ValidationUtils;
 
@@ -142,9 +143,9 @@ public class InstructorFormController implements Initializable {
                 boolean isSave = instructorService.saveInstructors(instructorDTO);
                 if (isSave) {
                     instructorController.initialize(null, null);
+                    DialogUtil.close();
                     AlertUtils.showSuccess("Success", "Instructor added successfully.");
                     clearFields();
-                    instructorController.initialize(null, null);
                 } else {
                     AlertUtils.showError("Error", "Failed to add instructor.");
                 }
@@ -166,6 +167,7 @@ public class InstructorFormController implements Initializable {
         String availability = cmbAvailability.getSelectionModel().getSelectedItem() != null ? cmbAvailability.getSelectionModel().getSelectedItem().toString() : "";
         if (validateForm()) {
             InstructorDTO instructorDTO = new InstructorDTO().builder()
+                    .instructorId(mainInstructorDTO.getInstructorId())
                     .firstName(fName)
                     .lastName(lName)
                     .email(email)
@@ -177,9 +179,9 @@ public class InstructorFormController implements Initializable {
                 boolean isUpdate = instructorService.updateInstructors(instructorDTO);
                 if (isUpdate) {
                     instructorController.initialize(null, null);
+                    DialogUtil.close();
                     AlertUtils.showSuccess("Success", "Instructor update successfully.");
                     clearFields();
-                    instructorController.initialize(null, null);
                 } else {
                     AlertUtils.showError("Error", "Failed to update instructor.");
                 }

@@ -26,7 +26,7 @@ public class Student {
     private Date registrationDate;
 
     // Many-to-Many with courses via StudentCourseDetails
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "student_course_details",
             joinColumns = @JoinColumn(name = "student_id"),

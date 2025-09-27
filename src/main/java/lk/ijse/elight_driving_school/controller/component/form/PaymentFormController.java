@@ -17,6 +17,7 @@ import lk.ijse.elight_driving_school.service.ServiceFactory;
 import lk.ijse.elight_driving_school.service.custom.PaymentsService;
 import lk.ijse.elight_driving_school.service.custom.StudentService;
 import lk.ijse.elight_driving_school.util.AlertUtils;
+import lk.ijse.elight_driving_school.util.DialogUtil;
 import lk.ijse.elight_driving_school.util.NotificationUtils;
 import lk.ijse.elight_driving_school.util.ValidationUtils;
 
@@ -62,7 +63,7 @@ public class PaymentFormController implements Initializable {
     private TextField txtStatus;
 
     PaymentController mainPaymentController;
-    PaymentsDTO paymentsDTO;
+    PaymentsDTO mainPaymentsDTO;
 
     PaymentsService paymentsService = ServiceFactory.getInstance().getService(ServiceTypes.PAYMENTS);
     StudentService studentService = ServiceFactory.getInstance().getService(ServiceTypes.STUDENT);
@@ -79,18 +80,18 @@ public class PaymentFormController implements Initializable {
 
     public void init(PaymentController paymentController , PaymentsDTO paymentsDTO) {
         this.mainPaymentController = paymentController;
-        this.paymentsDTO = paymentsDTO;
+        this.mainPaymentsDTO = paymentsDTO;
         handelUpdateCreate();
     }
 
     private void handelUpdateCreate(){
-        if (mainPaymentController != null) {
+        if (mainPaymentsDTO != null) {
             lblFormTitle.setText("Update Payment");
-            txtAmount.setText(String.valueOf(paymentsDTO.getAmount()));
-            txtStatus.setText(paymentsDTO.getStatus());
-            paymentDatePicker.setValue(LocalDate.parse(paymentsDTO.getPaymentDate().toString()));
-            cmbPaymentMethod.getSelectionModel().select(paymentsDTO.getPaymentMethod());
-            cmbStudentId.getSelectionModel().select(Integer.parseInt(paymentsDTO.getStudentId()));
+            txtAmount.setText(String.valueOf(mainPaymentsDTO.getAmount()));
+            txtStatus.setText(mainPaymentsDTO.getStatus());
+            paymentDatePicker.setValue(LocalDate.parse(mainPaymentsDTO.getPaymentDate().toString()));
+            cmbPaymentMethod.getSelectionModel().select(mainPaymentsDTO.getPaymentMethod());
+            cmbStudentId.getSelectionModel().select(Integer.parseInt(mainPaymentsDTO.getStudentId()));
         }  else {
             lblFormTitle.setText("Add New Payment");
             clearFields();
@@ -118,7 +119,7 @@ public class PaymentFormController implements Initializable {
     }
 
     public void handeSubmit(){
-        if (mainPaymentController != null) {
+        if (mainPaymentsDTO != null) {
             updateProject();
         } else {
             saveProject();
@@ -142,6 +143,8 @@ public class PaymentFormController implements Initializable {
             try {
                 boolean isSave = paymentsService.savePayments(paymentsDTO);
                 if (isSave) {
+                    mainPaymentController.initialize(null, null);
+                    DialogUtil.close();
                     AlertUtils.showSuccess("Success", "Payment added successfully.");
                     clearFields();
                 } else {
@@ -164,6 +167,7 @@ public class PaymentFormController implements Initializable {
         String status = txtStatus.getText();
         if (validateForm()) {
             PaymentsDTO paymentsDTO = PaymentsDTO.builder()
+                    .paymentId(mainPaymentsDTO.getPaymentId())
                     .paymentDate(paymentDate)
                     .amount(amount)
                     .paymentMethod(paymentMethod)
@@ -173,6 +177,8 @@ public class PaymentFormController implements Initializable {
             try {
                 boolean isUpdate = paymentsService.updatePayments(paymentsDTO);
                 if (isUpdate) {
+                    mainPaymentController.initialize(null, null);
+                    DialogUtil.close();
                     AlertUtils.showSuccess("Success", "Payment update successfully.");
                     clearFields();
                 } else {

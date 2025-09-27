@@ -22,6 +22,7 @@ import lk.ijse.elight_driving_school.service.custom.InstructorService;
 import lk.ijse.elight_driving_school.service.custom.StudentService;
 import lk.ijse.elight_driving_school.service.custom.LessonsService;
 import lk.ijse.elight_driving_school.util.AlertUtils;
+import lk.ijse.elight_driving_school.util.DialogUtil;
 import lk.ijse.elight_driving_school.util.NotificationUtils;
 import lk.ijse.elight_driving_school.util.ValidationUtils;
 
@@ -71,7 +72,7 @@ public class LessonFormController implements Initializable {
     private TextField txtStatus;
 
     LessonsController lessonsController;
-    LessonsDTO lessonsDTO;
+    LessonsDTO mainLessonsDTO;
 
     LessonsService lessonsService = ServiceFactory.getInstance().getService(ServiceTypes.LESSONS);
     CourseService courseService = ServiceFactory.getInstance().getService(ServiceTypes.COURSE);
@@ -90,20 +91,20 @@ public class LessonFormController implements Initializable {
 
     public void init(LessonsController lessonsController , LessonsDTO lessonsDTO) {
         this.lessonsController = lessonsController;
-        this.lessonsDTO = lessonsDTO;
+        this.mainLessonsDTO = lessonsDTO;
         handelUpdateCreate();
     }
 
     private void handelUpdateCreate(){
-        if (lessonsDTO != null) {
+        if (mainLessonsDTO != null) {
             lblFormTitle.setText("Update Instructor");
-            txtStartTime.setText(lessonsDTO.getStartTime().toString());
-            txtEndTime.setText(lessonsDTO.getEndTime().toString());
-            txtStatus.setText(lessonsDTO.getStatus());
-            lessonDatePicker.setValue(LocalDate.parse(lessonsDTO.getLessonDate().toString()));
-            cmbCourse.getSelectionModel().select(Integer.parseInt(lessonsDTO.getCourseId()));
-            cmbInstrucre.getSelectionModel().select(Integer.parseInt(lessonsDTO.getInstructorId()));
-            cmbStudent.getSelectionModel().select(Integer.parseInt(lessonsDTO.getStudentId()));
+            txtStartTime.setText(mainLessonsDTO.getStartTime().toString());
+            txtEndTime.setText(mainLessonsDTO.getEndTime().toString());
+            txtStatus.setText(mainLessonsDTO.getStatus());
+            lessonDatePicker.setValue(LocalDate.parse(mainLessonsDTO.getLessonDate().toString()));
+            cmbCourse.getSelectionModel().select(Integer.parseInt(mainLessonsDTO.getCourseId()));
+            cmbInstrucre.getSelectionModel().select(Integer.parseInt(mainLessonsDTO.getInstructorId()));
+            cmbStudent.getSelectionModel().select(Integer.parseInt(mainLessonsDTO.getStudentId()));
         }  else {
             lblFormTitle.setText("Add New Instructor");
             clearFields();
@@ -128,14 +129,15 @@ public class LessonFormController implements Initializable {
         Object selectedCourse = cmbCourse.getSelectionModel().getSelectedItem();
         Object selectedInstructor = cmbInstrucre.getSelectionModel().getSelectedItem();
         Object selectedStudent = cmbStudent.getSelectionModel().getSelectedItem();
+
         if (!(isValidStartTime && isValidEndTime && isValidStatus && isValidDate && selectedCourse != null && selectedInstructor != null && selectedStudent != null)) {
             return false;
         }
         return true;
     }
 
-    void handelSubmit(){
-        if (lessonsDTO != null) {
+    public void handelSubmit(){
+        if (mainLessonsDTO != null) {
             updateProject();
         } else {
             saveProject();
@@ -147,8 +149,20 @@ public class LessonFormController implements Initializable {
         InstructorDTO selectedInstructor = (InstructorDTO) cmbInstrucre.getSelectionModel().getSelectedItem();
         StudentDTO selectedStudent = (StudentDTO) cmbStudent.getSelectionModel().getSelectedItem();
         Date lessonDate = java.sql.Date.valueOf(lessonDatePicker.getValue());
-        Time startTime = Time.valueOf(txtStartTime.getText());
-        Time endTime = Time.valueOf(txtEndTime.getText());
+
+        String start = txtStartTime.getText().trim();
+        if (start.matches("\\d{2}:\\d{2}")) {
+            start += ":00"; // seconds add කරන්න
+        }
+        Time startTime = Time.valueOf(start);
+
+        String end = txtEndTime.getText().trim();
+        if (start.matches("\\d{2}:\\d{2}")) {
+            end += ":00"; // seconds add කරන්න
+        }
+        txtEndTime.setText(end);
+        Time endTime = Time.valueOf(start);
+
         String status = txtStatus.getText();
         if (validateForm()) {
             LessonsDTO lessonsDTO = LessonsDTO.builder()
@@ -163,14 +177,16 @@ public class LessonFormController implements Initializable {
             try {
                 boolean isSave = lessonsService.saveLessons(lessonsDTO);
                 if (isSave) {
+                    lessonsController.initialize(null, null);
+                    DialogUtil.close();
                     AlertUtils.showSuccess("Success", "Lesson added successfully.");
                     clearFields();
                 } else {
                     AlertUtils.showError("Error", "Failed to add lesson.");
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 AlertUtils.showError("Error", "Failed to add lesson : " + e.getMessage());
-                throw new RuntimeException(e);
             }
         } else {
             NotificationUtils.showError("Validation Error", "Please fill all the fields correctly.");
@@ -187,7 +203,7 @@ public class LessonFormController implements Initializable {
         String status = txtStatus.getText();
         if (validateForm()) {
             LessonsDTO lessonsDTO = LessonsDTO.builder()
-                    .courseId(selectedCourse.getCourseId())
+                    .courseId(mainLessonsDTO.getCourseId())
                     .instructorId(selectedInstructor.getInstructorId())
                     .studentId(selectedStudent.getStudentId())
                     .lessonDate(lessonDate)
@@ -198,6 +214,8 @@ public class LessonFormController implements Initializable {
             try {
                 boolean isSave = lessonsService.updateLessons(lessonsDTO);
                 if (isSave) {
+                    lessonsController.initialize(null, null);
+                    DialogUtil.close();
                     AlertUtils.showSuccess("Success", "Lesson update successfully.");
                     clearFields();
                 } else {

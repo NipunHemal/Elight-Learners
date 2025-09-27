@@ -9,8 +9,6 @@ import java.util.Optional;
 public interface LessonsService extends SuperService {
     List<LessonsDTO> getAllLessons() throws Exception;
 
-    String getLastLessonId() throws Exception;
-
     boolean saveLessons(LessonsDTO t) throws Exception;
 
     boolean updateLessons(LessonsDTO t) throws Exception;
@@ -18,6 +16,4 @@ public interface LessonsService extends SuperService {
     boolean deleteLessons(String id) throws Exception;
 
     List<String> getAllLessonIds() throws Exception;
-
-    Optional<LessonsDTO> findByLessonId(String id) throws Exception;
 }

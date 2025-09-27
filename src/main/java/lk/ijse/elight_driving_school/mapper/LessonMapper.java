@@ -1,11 +1,16 @@
 package lk.ijse.elight_driving_school.mapper;
 
-import lk.ijse.elight_driving_school.dto.InstructorDTO;
+import lk.ijse.elight_driving_school.dao.DAOFactory;
+import lk.ijse.elight_driving_school.dao.custom.InstructorDAO;
 import lk.ijse.elight_driving_school.dto.LessonsDTO;
 import lk.ijse.elight_driving_school.dto.tm.LessonsTM;
+import lk.ijse.elight_driving_school.entity.Instructor;
 import lk.ijse.elight_driving_school.entity.Lesson;
+import lk.ijse.elight_driving_school.enums.DAOTypes;
 
 public class LessonMapper {
+
+    private static InstructorDAO instructorDAO = DAOFactory.getInstance().getDAO(DAOTypes.INSTRUCTORS);
 
     public static LessonsDTO toDTO(Lesson
                                            lesson) {
@@ -23,15 +28,16 @@ public class LessonMapper {
         return dto;
     }
 
-    public static Lesson toEntity(LessonsDTO dto) {
+    public static Lesson toEntity(LessonsDTO dto) throws Exception {
         if (dto == null) return null;
-
+        Instructor instructor = instructorDAO.findById(dto.getInstructorId()).get();
         Lesson lesson = new Lesson();
-        lesson.setLessonId(Long.parseLong(dto.getLessonId()));
+        lesson.setLessonId(dto.getLessonId() == null ? null : Long.parseLong(dto.getLessonId()));
         lesson.setLessonDate(dto.getLessonDate());
         lesson.setStartTime(dto.getStartTime());
         lesson.setEndTime(dto.getEndTime());
         lesson.setStatus(dto.getStatus());
+        lesson.setInstructor(instructor);
         return lesson;
     }
 

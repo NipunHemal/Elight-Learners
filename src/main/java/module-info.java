@@ -14,6 +14,8 @@ module lk.ijse.elight_driving_school {
 
     opens lk.ijse.elight_driving_school to javafx.fxml;
 
+    opens lk.ijse.elight_driving_school.dto.tm to javafx.base;
+
     opens lk.ijse.elight_driving_school.controller to javafx.fxml;
     opens lk.ijse.elight_driving_school.controller.auth to javafx.fxml;
     opens lk.ijse.elight_driving_school.controller.layout to javafx.fxml;

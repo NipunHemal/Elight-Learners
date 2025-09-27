@@ -37,11 +37,6 @@ public class LessonsServiceImpl implements LessonsService {
     }
 
     @Override
-    public String getLastLessonId() throws Exception {
-        return lessonsDAO.getLastId();
-    }
-
-    @Override
     public boolean saveLessons(LessonsDTO t) throws Exception {
 
         //check course exist
@@ -58,10 +53,6 @@ public class LessonsServiceImpl implements LessonsService {
 
     @Override
     public boolean updateLessons(LessonsDTO t) throws Exception {
-        Optional<Lesson> lessons = lessonsDAO.findById(t.getLessonId());
-        if (lessons.isEmpty()) {
-            throw new DuplicateException("Lessons Not Found");
-        }
         return lessonsDAO.update(LessonMapper.toEntity(t));
     }
 
@@ -93,11 +84,5 @@ public class LessonsServiceImpl implements LessonsService {
     @Override
     public List<String> getAllLessonIds() throws Exception {
         return lessonsDAO.getAllIds();
-    }
-
-    @Override
-    public Optional<LessonsDTO> findByLessonId(String id) throws Exception {
-        Optional<Lesson> lessons = lessonsDAO.findById(id);
-        return lessons.map(LessonMapper::toDTO);
     }
 }

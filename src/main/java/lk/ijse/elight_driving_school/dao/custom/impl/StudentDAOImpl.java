@@ -76,9 +76,8 @@ public class StudentDAOImpl implements StudentDAO {
         try {
             Query<Student> query = session.createQuery("from Student",Student.class);
             List<Student> studentsList = query.list();
-            System.out.println(studentsList.getFirst().getCourses());
             return studentsList;
-        }finally {
+        } finally {
             session.close();
         }
     }
@@ -95,25 +94,6 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public String getLastId() throws SQLException {
-       Session session = factoryConfig.getSession();
-       try {
-           Query<String> query = session.createQuery("SELECT stu.id FROM Student stu ORDER BY stu.id DESC",
-                   String.class).setMaxResults(1);
-           List<String> studentList = query.list();
-           if (studentList.isEmpty()) {
-               return null;
-
-           }
-           return studentList.get(0);
-       }finally {
-           session.close();
-       }
-    }
-
-
-
-    @Override
     public Optional<Student> findById(String id) throws SQLException {
         Session session = factoryConfig.getSession();
         try {
@@ -121,23 +101,6 @@ public class StudentDAOImpl implements StudentDAO {
             return Optional.ofNullable(student);
         } finally {
             session.close();
-        }
-    }
-
-    @Override
-    public String generateNewId() {
-        String lastId = null;
-        try {
-            lastId = getLastId();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        if (lastId == null) {
-            return "S-001";
-        } else {
-            int num = Integer.parseInt(lastId.split("-")[1]);
-            num++;
-            return String.format("S-%03d", num);
         }
     }
 }

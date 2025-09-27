@@ -23,7 +23,7 @@ public class UserMapper {
         if (dto == null) return null;
 
         User user = new User();
-        user.setUserId(Long.parseLong(dto.getUserId()));
+        user.setUserId(dto.getUserId() == null ? null : Long.parseLong(dto.getUserId()));
         user.setUsername(dto.getUsername());
         user.setPassword(dto.getPassword());
         user.setRole(dto.getRole());

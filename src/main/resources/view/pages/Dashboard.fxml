@@ -1,21 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.elight_driving_school.controller.pages.DashboardPageController"
-            prefHeight="400.0" prefWidth="600.0">
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../style/dashboardLayout.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elight_driving_school.controller.pages.DashboardPageController">
     <children>
         <Label layoutX="252.0" layoutY="182.0" prefHeight="35.0" prefWidth="94.0" text="Dashboard">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
+      <GridPane hgap="20" layoutX="20.0" layoutY="18.0" styleClass="dashboard-grid" vgap="20">
+         <columnConstraints>
+            <ColumnConstraints percentWidth="60" />
+            <ColumnConstraints percentWidth="40" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+         <children>
+            <VBox spacing="20" GridPane.columnIndex="0">
+               <children>
+                  <VBox styleClass="transactions-section">
+                     <children>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label styleClass="section-title" text="Recent Transactions" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Button styleClass="filter-btn" text="🔍 Last 7 Days" />
+                           </children>
+                        </HBox>
+                        <VBox spacing="15" styleClass="transaction-list">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="15" styleClass="transaction-item">
+                                 <children>
+                                    <Circle radius="20" styleClass="transaction-icon, paypal-icon" />
+                                    <VBox>
+                                       <children>
+                                          <Label styleClass="transaction-title" text="Paypal - Received" />
+                                          <Label styleClass="transaction-date" text="30 December 2020, 09:08 AM" />
+                                       </children>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label styleClass="transaction-amount, amount-positive" text="+ $2,200.00" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="15" styleClass="transaction-item">
+                                 <children>
+                                    <Circle radius="20" styleClass="transaction-icon, spotify-icon" />
+                                    <VBox>
+                                       <children>
+                                          <Label styleClass="transaction-title" text="Spotify Premium" />
+                                          <Label styleClass="transaction-date" text="30 December 2020, 07:30 AM" />
+                                       </children>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label styleClass="transaction-amount, amount-negative" text="- $19.00" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="15" styleClass="transaction-item">
+                                 <children>
+                                    <Circle radius="20" styleClass="transaction-icon, transferwise-icon" />
+                                    <VBox>
+                                       <children>
+                                          <Label styleClass="transaction-title" text="Transferwise - Received" />
+                                          <Label styleClass="transaction-date" text="29 December 2020, 10:36 AM" />
+                                       </children>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label styleClass="transaction-amount, amount-positive" text="+ $1,200.00" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="15" styleClass="transaction-item">
+                                 <children>
+                                    <Circle radius="20" styleClass="transaction-icon, hm-icon" />
+                                    <VBox>
+                                       <children>
+                                          <Label styleClass="transaction-title" text="HM Payment" />
+                                          <Label styleClass="transaction-date" text="29 December 2020, 08:30 AM" />
+                                       </children>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label styleClass="transaction-amount, amount-negative" text="- $2,200.00" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox spacing="20" GridPane.columnIndex="1">
+               <children>
+                  <VBox styleClass="balance-section">
+                     <children>
+                        <Label styleClass="balance-label" text="Your Total Balance" />
+                        <Label styleClass="balance-amount" text="80,201.50" />
+                        <Label styleClass="balance-date" text="December 31, 2020 • 07:20 PM" />
+                        <HBox alignment="CENTER" spacing="20" styleClass="balance-actions">
+                           <children>
+                              <VBox alignment="CENTER" styleClass="action-item">
+                                 <children>
+                                    <Circle radius="20" styleClass="action-icon, send-icon" />
+                                    <Label styleClass="action-label" text="Send" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" styleClass="action-item">
+                                 <children>
+                                    <Circle radius="20" styleClass="action-icon, topup-icon" />
+                                    <Label styleClass="action-label" text="Topup" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" styleClass="action-item">
+                                 <children>
+                                    <Circle radius="20" styleClass="action-icon, more-icon" />
+                                    <Label styleClass="action-label" text="More" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox styleClass="expenses-section">
+                     <children>
+                        <Label styleClass="section-title" text="Expenses Instead" />
+                        <StackPane styleClass="chart-container">
+                           <children>
+                              <Circle radius="80" styleClass="chart-background" />
+                              <Circle radius="70" styleClass="chart-progress" />
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <Label styleClass="chart-value" text="85.5" />
+                                    <Label styleClass="chart-label" text="Normal Level" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </StackPane>
+                        <Label styleClass="expenses-total" text="Total Exp: $1,820.80" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
     </children>
 </AnchorPane>

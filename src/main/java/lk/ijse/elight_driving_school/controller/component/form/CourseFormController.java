@@ -7,9 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import lk.ijse.elight_driving_school.controller.pages.CoursesController;
 import lk.ijse.elight_driving_school.dto.CourseDTO;
+import lk.ijse.elight_driving_school.dto.InstructorDTO;
 import lk.ijse.elight_driving_school.enums.ServiceTypes;
 import lk.ijse.elight_driving_school.service.ServiceFactory;
 import lk.ijse.elight_driving_school.service.custom.CourseService;
+import lk.ijse.elight_driving_school.service.custom.InstructorService;
 import lk.ijse.elight_driving_school.util.AlertUtils;
 import lk.ijse.elight_driving_school.util.DialogUtil;
 import lk.ijse.elight_driving_school.util.NotificationUtils;
@@ -23,7 +25,7 @@ public class CourseFormController implements Initializable {
 
     public Label lblFormTitle;
     @FXML
-    private ComboBox<CourseDTO> cmbInstrucre;
+    private ComboBox<InstructorDTO> cmbInstrucre;
 
     @FXML
     private TextField txtCourseName;
@@ -39,7 +41,9 @@ public class CourseFormController implements Initializable {
 
     CoursesController coursesController;
     CourseDTO mainCourseDTO;
+    InstructorDTO mainInstructorDTO;
     CourseService courseService = ServiceFactory.getInstance().getService(ServiceTypes.COURSE);
+    InstructorService instructorService = ServiceFactory.getInstance().getService(ServiceTypes.INSTRUCTOR);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -64,7 +68,7 @@ public class CourseFormController implements Initializable {
             txtDescription.setText(mainCourseDTO.getDescription());
             txtDuration.setText(mainCourseDTO.getDuration());
             txtFree.setText(String.valueOf(mainCourseDTO.getFree()));
-            cmbInstrucre.getSelectionModel().select(mainCourseDTO);
+            cmbInstrucre.getSelectionModel().select(mainInstructorDTO);
         }  else {
             lblFormTitle.setText("Add New Course");
             clearFields();
@@ -80,7 +84,7 @@ public class CourseFormController implements Initializable {
     }
 
     public boolean validateForm() {
-        CourseDTO selectedInstructor = cmbInstrucre.getSelectionModel().getSelectedItem();
+        InstructorDTO selectedInstructor = cmbInstrucre.getSelectionModel().getSelectedItem();
 
         boolean isValidName = ValidationUtils.validateInput(txtCourseName, "empty");
         boolean isValidDescription = ValidationUtils.validateInput(txtDescription, "empty");
@@ -106,8 +110,8 @@ public class CourseFormController implements Initializable {
         String name = txtCourseName.getText();
         String description = txtDescription.getText();
         String duration = txtDuration.getText();
-        Double free = Double.parseDouble(txtFree.getText());
-        CourseDTO selectedInstructor = cmbInstrucre.getSelectionModel().getSelectedItem();
+        Double free = (txtFree.getText() == null || txtFree.getText().isEmpty()) ? null : Double.parseDouble(txtFree.getText());
+        InstructorDTO selectedInstructor = cmbInstrucre.getSelectionModel().getSelectedItem();
 
         if (validateForm()) {
             CourseDTO courseDTO = new CourseDTO().builder()
@@ -121,14 +125,14 @@ public class CourseFormController implements Initializable {
                 boolean isSave = courseService.saveCourses(courseDTO);
                 if (isSave) {
                     coursesController.initialize(null, null);
+                    DialogUtil.close();
                     AlertUtils.showSuccess("Success", "Course added successfully.");
                     clearFields();
-                    coursesController.initialize(null, null);
-                    DialogUtil.close();
                 } else {
                     AlertUtils.showError("Error", "Failed to add course.");
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 AlertUtils.showError("Error", "Failed to add course : " + e.getMessage());
                 throw new RuntimeException(e);
             }
@@ -142,7 +146,7 @@ public class CourseFormController implements Initializable {
         String description = txtDescription.getText();
         String duration = txtDuration.getText();
         Double free = Double.parseDouble(txtFree.getText());
-        CourseDTO selectedInstructor = cmbInstrucre.getSelectionModel().getSelectedItem();
+        InstructorDTO selectedInstructor = cmbInstrucre.getSelectionModel().getSelectedItem();
 
         if (validateForm()) {
             CourseDTO courseDTO = new CourseDTO().builder()
@@ -156,14 +160,14 @@ public class CourseFormController implements Initializable {
                 boolean isUpdate = courseService.updateCourses(courseDTO);
                 if (isUpdate) {
                     coursesController.initialize(null, null);
+                    DialogUtil.close();
                     AlertUtils.showSuccess("Success", "Course update successfully.");
                     clearFields();
-                    coursesController.initialize(null, null);
-                    DialogUtil.close();
                 } else {
                     AlertUtils.showError("Error", "Failed to update course.");
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 AlertUtils.showError("Error", "Failed to update course : " + e.getMessage());
                 throw new RuntimeException(e);
             }
@@ -174,28 +178,29 @@ public class CourseFormController implements Initializable {
 
     public void initInstructorCombo(){
         try{
-            List<CourseDTO> courseDTOS = courseService.getAllCourses();
-            ObservableList<CourseDTO> courseObservableList = FXCollections.observableArrayList(courseDTOS);
-            cmbInstrucre.setItems(courseObservableList);
+            List<InstructorDTO> instructorDTOS = instructorService.getAllInstructors();
+            ObservableList<InstructorDTO> instructorDTOObservableList = FXCollections.observableArrayList(instructorDTOS);
+            cmbInstrucre.setItems(instructorDTOObservableList);
 
             // Show only courseName in dropdown
             cmbInstrucre.setCellFactory(lv -> new ListCell<>() {
                 @Override
-                protected void updateItem(CourseDTO item, boolean empty) {
+                protected void updateItem(InstructorDTO item, boolean empty) {
                     super.updateItem(item, empty);
-                    setText(empty || item == null ? null : item.getCourseName());
+                    setText(empty || item == null ? null : item.getFirstName());
                 }
             });
 
             // Show only courseName when selected
-            cmbInstrucre.setButtonCell(new ListCell<CourseDTO>() {
+            cmbInstrucre.setButtonCell(new ListCell<InstructorDTO>() {
                 @Override
-                protected void updateItem(CourseDTO item, boolean empty) {
+                protected void updateItem(InstructorDTO item, boolean empty) {
                     super.updateItem(item, empty);
-                    setText(empty || item == null ? null : item.getCourseName());
+                    setText(empty || item == null ? null : item.getFirstName());
                 }
             });
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
 

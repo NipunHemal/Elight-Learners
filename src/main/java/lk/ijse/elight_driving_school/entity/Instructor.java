@@ -24,12 +24,12 @@ public class Instructor {
     private String availability;
 
     // One instructor can teach many courses
-    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<Course> courses = new ArrayList<>();
 
     // One instructor can have many lessons
-    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<Lesson> lessons = new ArrayList<>();
 }

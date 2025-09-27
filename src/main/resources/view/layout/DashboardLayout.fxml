@@ -36,17 +36,17 @@
                 </VBox>
 
                 <VBox alignment="CENTER" fillWidth="false" styleClass="menu-items">
-                    <Button alignment="CENTER" text="Dashboard" VBox.vgrow="ALWAYS">
+                    <Button fx:id="btnDashboard" alignment="CENTER" text="Dashboard" VBox.vgrow="ALWAYS">
                         <styleClass>
                             <String fx:value="menu-item" />
                             <String fx:value="menu-item-active" />
                         </styleClass></Button>
-                    <Button onAction="#onActionInstructor" styleClass="menu-item" text="Instructor" />
-                    <Button onAction="#onActionStudents" styleClass="menu-item" text="Students" />
-                    <Button onAction="#onActionLessons" styleClass="menu-item" text="Lessons" />
-               <Button onAction="#onActionPayment" styleClass="menu-item" text="Payment" />
-               <Button onAction="#onActionUser" styleClass="menu-item" text="User" />
-               <Button onAction="#onActionCourses" styleClass="menu-item" text="Courses" />
+                    <Button fx:id="btnInstructor" onAction="#onActionInstructor" styleClass="menu-item" text="Instructor" />
+                    <Button fx:id="btnStudent" onAction="#onActionStudents" styleClass="menu-item" text="Students" />
+                    <Button fx:id="btnLesson" onAction="#onActionLessons" styleClass="menu-item" text="Lessons" />
+               <Button fx:id="btnPayment" onAction="#onActionPayment" styleClass="menu-item" text="Payment" />
+               <Button fx:id="btnUser" onAction="#onActionUser" styleClass="menu-item" text="User" />
+               <Button fx:id="btnCourse" onAction="#onActionCourses" styleClass="menu-item" text="Courses" />
                     <!--                    <Button styleClass="menu-item" text="Reports" />-->
                 </VBox>
 

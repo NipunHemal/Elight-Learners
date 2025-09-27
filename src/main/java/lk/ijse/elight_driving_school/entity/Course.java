@@ -25,18 +25,15 @@ public class Course {
 
     private String description;
 
-    // Many courses can be taught by one instructor
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "instructor_id")
     @ToString.Exclude
     private Instructor instructor;
 
-    // Many-to-Many with Students via a join table
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private List<StudentCourseDetails> studentCourseDetails = new ArrayList<>();
 
-    // One-to-Many: Course ↔ Lessons
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private List<Lesson> lessons = new ArrayList<>();

@@ -34,19 +34,10 @@ public class StudentCourseDetailServiceImpl implements StudentCourseDetailServic
     }
 
     @Override
-    public String getLastStudentCourseDetailId() throws Exception {
-        return studentCourseDetailDAO.getLastId();
-    }
-
-    @Override
     public boolean saveStudentCourseDetails(StudentCourseDetailsDTO t) throws Exception {
         Optional<Student> studentExists = studentDAO.findById(t.getStudentId());
         Optional<Course> courseExists = courseDAO.findById(t.getCourseId());
-        Optional<StudentCourseDetails> studentCourseDetailsExists = studentCourseDetailDAO.findById(t.getStudentCourseId());
 
-        if (studentCourseDetailsExists.isPresent()) {
-            throw new DuplicateException("Student Course Details already exists");
-        }
         if (studentExists.isPresent() &&  courseExists.isPresent()) {
             return studentCourseDetailDAO.save(StudentCourseDetailsMapper.toEntity(t));
         }
@@ -74,11 +65,5 @@ public class StudentCourseDetailServiceImpl implements StudentCourseDetailServic
     @Override
     public List<String> getAllStudentCourseDetailIds() throws Exception {
         return studentCourseDetailDAO.getAllIds();
-    }
-
-    @Override
-    public Optional<StudentCourseDetailsDTO> findByStudentCourseDetailId(String id) throws Exception {
-        Optional<StudentCourseDetails> details = studentCourseDetailDAO.findById(id);
-        return details.map(StudentCourseDetailsMapper::toDTO);
     }
 }

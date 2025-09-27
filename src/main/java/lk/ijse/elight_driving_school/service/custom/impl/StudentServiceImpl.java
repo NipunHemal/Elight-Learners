@@ -30,16 +30,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public String getLastStudentId() throws Exception {
-        return studentDAO.getLastId();
-    }
-
-    @Override
     public boolean saveStudents(StudentDTO t) throws Exception {
-        Optional<Student> students = studentDAO.findById(t.getStudentId());
-        if (students.isPresent()) {
-            throw new DuplicateException("Student already exists");
-        }
         return studentDAO.save(StudentMapper.toEntity(t));
 
     }
@@ -71,10 +62,5 @@ public class StudentServiceImpl implements StudentService {
     public Optional<StudentDTO> findByStudentId(String id) throws Exception {
         Optional<Student> students = studentDAO.findById(id);
         return students.map(StudentMapper::toDTO);
-    }
-
-    @Override
-    public String generateNewStudentId() {
-        return studentDAO.generateNewId();
     }
 }

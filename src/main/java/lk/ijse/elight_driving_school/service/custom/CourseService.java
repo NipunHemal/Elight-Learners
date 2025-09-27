@@ -9,8 +9,6 @@ import java.util.Optional;
 public interface CourseService extends SuperService {
     List<CourseDTO> getAllCourses() throws Exception;
 
-    String getLastCourseId() throws Exception;
-
     boolean saveCourses(CourseDTO t) throws Exception;
 
     boolean updateCourses(CourseDTO t) throws Exception;
@@ -20,7 +18,4 @@ public interface CourseService extends SuperService {
     List<String> getAllCourseIds() throws Exception;
 
     Optional<CourseDTO> findByCourseId(String id) throws Exception;
-
-    String generateNewCourseId();
-
 }

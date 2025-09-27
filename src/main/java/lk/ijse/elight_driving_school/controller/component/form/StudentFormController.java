@@ -1,10 +1,7 @@
 package lk.ijse.elight_driving_school.controller.component.form;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.fxml.Initializable;
 import lk.ijse.elight_driving_school.controller.pages.StudentController;
 import lk.ijse.elight_driving_school.dto.StudentDTO;
@@ -12,16 +9,24 @@ import lk.ijse.elight_driving_school.enums.ServiceTypes;
 import lk.ijse.elight_driving_school.service.ServiceFactory;
 import lk.ijse.elight_driving_school.service.custom.StudentService;
 import lk.ijse.elight_driving_school.util.AlertUtils;
+import lk.ijse.elight_driving_school.util.DialogUtil;
 import lk.ijse.elight_driving_school.util.NotificationUtils;
 import lk.ijse.elight_driving_school.util.ValidationUtils;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 public class StudentFormController implements Initializable {
 
+    public TextField txtUserName;
+    public TextField txtPassword;
+    public TextField txtConfirmPassword;
+    public Label emailError1;
+    public ComboBox cmbRole;
+    public ComboBox cmbStatus;
     @FXML
     private Button cancelButton;
 
@@ -88,8 +93,21 @@ public class StudentFormController implements Initializable {
             txtLastName.setText(mainStudentDTO.getLastName());
             txtEmail.setText(mainStudentDTO.getEmail());
             txtAddress.setText(mainStudentDTO.getAddress());
-            dobPicker.setValue(LocalDate.parse(mainStudentDTO.getDob().toString()));
-            registstaionDatePicker.setValue(LocalDate.parse(mainStudentDTO.getRegistrationDate().toString()));
+            Date dob = mainStudentDTO.getDob();   // java.util.Date
+            if (dob != null) {
+                LocalDate localDate = dob.toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate();
+                dobPicker.setValue(localDate);
+            }
+//            registstaionDatePicker.setValue(LocalDate.parse(mainStudentDTO.getRegistrationDate().toString()));
+            Date regiDate = mainStudentDTO.getDob();   // java.util.Date
+            if (regiDate != null) {
+                LocalDate localDate = regiDate.toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate();
+                registstaionDatePicker.setValue(localDate);
+            }
         }  else {
             lblFormTitle.setText("Add New Course");
             clearFields();
@@ -149,6 +167,8 @@ public class StudentFormController implements Initializable {
             try {
                 boolean isSave = studentService.saveStudents(studentDTO);
                 if (isSave) {
+                    studentController.initialize(null, null);
+                    DialogUtil.close();
                     AlertUtils.showSuccess("Success", "Student added successfully.");
                     clearFields();
                 } else {
@@ -185,6 +205,8 @@ public class StudentFormController implements Initializable {
             try {
                 boolean isSave = studentService.saveStudents(studentDTO);
                 if (isSave) {
+                    studentController.initialize(null, null);
+                    DialogUtil.close();
                     AlertUtils.showSuccess("Success", "Student added successfully.");
                     clearFields();
                 } else {

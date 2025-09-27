@@ -6,8 +6,6 @@ import java.util.Optional;
 public interface CrudDAO<T> extends SuperDAO {
     List<T> getAll() throws Exception;
 
-    String getLastId() throws Exception;
-
     boolean save(T t) throws Exception;
 
     boolean update(T t) throws Exception;
@@ -18,5 +16,4 @@ public interface CrudDAO<T> extends SuperDAO {
 
     Optional<T> findById(String id) throws Exception;
 
-    String generateNewId();
 }

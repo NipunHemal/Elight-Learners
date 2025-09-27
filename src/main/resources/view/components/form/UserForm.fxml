@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" spacing="0" styleClass="root" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.elight_driving_school.controller.component.form.UserFormController">
+
+     <!-- Form Header -->
+     <VBox spacing="0" styleClass="arrow">
+         <Label fx:id="lblFormTitle" styleClass="form-title" text="Create User" />
+     </VBox>
+
+     <!-- Personal Information Section -->
+     <VBox spacing="16">
+
+         <!-- Name Fields Row -->
+         <HBox spacing="16">
+             <VBox spacing="6" HBox.hgrow="ALWAYS">
+                 <Label styleClass="field-label" text="User Name" />
+                 <TextField fx:id="txtUserName" promptText="Enter User Name" styleClass="modern-input" />
+             </VBox>
+         </HBox>
+
+               <!-- Phone Field -->
+         <VBox spacing="6">
+             <Label styleClass="field-label" text="Email" />
+             <TextField fx:id="txtEmail" promptText="Enter Email" styleClass="modern-input" />
+         </VBox>
+
+         <!-- Email Field -->
+         <VBox prefHeight="79.0" prefWidth="387.0" spacing="6">
+             <Label styleClass="field-label" text="Password" />
+             <TextField fx:id="txtPassword" promptText="Enter Password" styleClass="modern-input" />
+             <Label fx:id="emailError" managed="false" styleClass="error-text" text="Please enter a valid email address" visible="false" />
+         </VBox>
+      <VBox prefHeight="79.0" prefWidth="387.0" spacing="6">
+         <children>
+            <Label styleClass="field-label" text="Confirm Password" />
+            <TextField fx:id="txtConfirmPassword" promptText="Confirm Password" styleClass="modern-input" />
+            <Label fx:id="emailError1" managed="false" styleClass="error-text" text="Please enter a valid email address" visible="false" />
+         </children>
+      </VBox>
+         <VBox spacing="6">
+             <children>
+                 <Label styleClass="field-label" text="Contact" />
+                 <TextField fx:id="txtContact" promptText="Enter Contact" styleClass="modern-input" />
+             </children>
+         </VBox>
+      <HBox>
+         <children>
+            <VBox spacing="6">
+               <children>
+                  <Label styleClass="field-label" text="Role" />
+                  <ComboBox fx:id="cmbRole" promptText="Select Role" styleClass="modern-combo" />
+               </children>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <VBox spacing="6">
+               <children>
+                  <Label styleClass="field-label" text="Status" />
+                  <ComboBox fx:id="cmbStatus" promptText="Select Status" styleClass="modern-combo" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+     </VBox>
+ </VBox>

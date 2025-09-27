@@ -83,23 +83,6 @@ public class InstructorDAOImpl implements InstructorDAO {
     }
 
     @Override
-    public String getLastId() throws Exception {
-        Session session = factoryConfig.getSession();
-        try {
-            Query<String> query = session.createQuery("SELECT i.instructorId FROM Instructor i ORDER BY i.instructorId DESC", String.class)
-                    .setMaxResults(1);
-            List<String> instructorsList = query.list();
-            if (instructorsList.isEmpty()) {
-                return null;
-            }
-            return instructorsList.getFirst();
-        } finally {
-            session.close();
-        }
-    }
-
-
-    @Override
     public List<String> getAllIds() throws Exception {
         Session session = factoryConfig.getSession();
         try {
@@ -121,20 +104,4 @@ public class InstructorDAOImpl implements InstructorDAO {
         }
     }
 
-    @Override
-    public String generateNewId() {
-        String lastId = null;
-        try {
-            lastId = getLastId();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        if (lastId == null) {
-            return "I-001";
-        } else {
-            int num = Integer.parseInt(lastId.split("-")[1]);
-            num++;
-            return String.format("I-%03d", num);
-        }
-    }
 }

@@ -9,6 +9,7 @@ public  class PasswordUtils {
     }
 
     public static boolean checkPassword(String password, String hashedPassword) {
-        return BCrypt.checkpw(password, hashedPassword);
+        return password.equals(hashedPassword);
+//        return BCrypt.checkpw(password, hashedPassword);
     }
 }

@@ -82,22 +82,6 @@ public class PaymentsDAOImpl implements PaymentDAO {
     }
 
     @Override
-    public String getLastId() throws Exception {
-        Session session = factoryConfig.getSession();
-        try {
-            Query<String> query = session.createQuery("SELECT p.paymentId FROM Payment p ORDER BY p.paymentId DESC", String.class)
-                    .setMaxResults(1);
-            List<String> paymentList = query.list();
-            if (paymentList.isEmpty()) {
-                return null;
-            }
-            return paymentList.getFirst();
-        } finally {
-            session.close();
-        }
-    }
-
-    @Override
     public List<String> getAllIds() throws Exception {
         Session session = factoryConfig.getSession();
         try {
@@ -116,23 +100,6 @@ public class PaymentsDAOImpl implements PaymentDAO {
             return Optional.ofNullable(payments);
         } finally {
             session.close();
-        }
-    }
-
-    @Override
-    public String generateNewId() {
-        String lastId = null;
-        try {
-            lastId = getLastId();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        if (lastId == null) {
-            return "P-001";
-        } else {
-            int num = Integer.parseInt(lastId.split("-")[1]);
-            num++;
-            return String.format("P-%03d", num);
         }
     }
 }

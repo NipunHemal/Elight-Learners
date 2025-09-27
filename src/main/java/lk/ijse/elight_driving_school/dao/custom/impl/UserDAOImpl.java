@@ -29,9 +29,9 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean save(User user) throws SQLException {
+        System.out.println(user);
         Session session = factoryConfig.getSession();
         Transaction transaction = session.beginTransaction();
-
         try {
             session.persist(user);
             transaction.commit();
@@ -96,26 +96,6 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public String getLastId() throws SQLException {
-        Session session = factoryConfig.getSession();
-
-        try {
-            Query<String> query = session.createQuery("SELECT use.id FROM User use ORDER BY use.id DESC",
-                    String.class).setMaxResults(1);
-            List<String> studentList = query.list();
-            if (studentList.isEmpty()) {
-                return null;
-
-            }
-            return studentList.get(0);
-        }finally {
-            session.close();
-        }
-    }
-
-
-
-    @Override
     public Optional<User> findById(String id) throws SQLException {
         Session session = factoryConfig.getSession();
 
@@ -127,27 +107,12 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-    @Override
-    public String generateNewId() {
-        String lastId = null;
-        try {
-            lastId = getLastId();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        if (lastId == null) {
-            return "U-001";
-        } else {
-            int num = Integer.parseInt(lastId.split("-")[1]);
-            num++;
-            return String.format("U-%03d", num);
-        }
-    }
     public User getUserByEmail(String email){
         Session session = factoryConfig.getSession();
         try {
             Query<User> query = session.createQuery("FROM User u WHERE u.email = :email", User.class);
             query.setParameter("email", email);
+            if (query.getResultList() == null) return null;
             return query.uniqueResult();
         } finally {
             session.close();

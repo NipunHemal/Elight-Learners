@@ -86,23 +86,6 @@ public class StudentCourseDetailsDAOImpl implements StudentCourseDetailDAO {
     }
 
     @Override
-    public String getLastId() throws Exception {
-        Session session = factoryConfig.getSession();
-        try {
-            Query<String> query = session.createQuery("SELECT scd.studentCourseId FROM StudentCourseDetails scd ORDER BY scd.studentCourseId DESC", String.class)
-                    .setMaxResults(1);
-            List<String> studentCourseList = query.list();
-            if (studentCourseList.isEmpty()) {
-                return null;
-            }
-            return studentCourseList.getFirst();
-        } finally {
-            session.close();
-        }
-    }
-
-
-    @Override
     public List<String> getAllIds() throws Exception {
         Session session = factoryConfig.getSession();
         try {
@@ -121,23 +104,6 @@ public class StudentCourseDetailsDAOImpl implements StudentCourseDetailDAO {
             return Optional.ofNullable(studentCourseDetails);
         } finally {
             session.close();
-        }
-    }
-
-    @Override
-    public String generateNewId() {
-        String lastId = null;
-        try {
-            lastId = getLastId();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        if (lastId == null) {
-            return "SCD-001";
-        } else {
-            int num = Integer.parseInt(lastId.split("-")[1]);
-            num++;
-            return String.format("SCD-%03d", num);
         }
     }
 }

@@ -84,23 +84,6 @@ public class LessonsDAOImpl implements LessonsDAO {
     }
 
     @Override
-    public String getLastId() throws Exception {
-        Session session = factoryConfig.getSession();
-        try {
-            Query<String> query = session.createQuery("SELECT l.lessonId FROM Lesson l ORDER BY l.lessonId DESC", String.class)
-                    .setMaxResults(1);
-            List<String> lessonsList = query.list();
-            if (lessonsList.isEmpty()) {
-                return null;
-            }
-            return lessonsList.getFirst();
-        } finally {
-            session.close();
-        }
-    }
-
-
-    @Override
     public List<String> getAllIds() throws Exception {
         Session session = factoryConfig.getSession();
         try {
@@ -122,20 +105,4 @@ public class LessonsDAOImpl implements LessonsDAO {
         }
     }
 
-    @Override
-    public String generateNewId() {
-        String lastId = null;
-        try {
-            lastId = getLastId();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        if (lastId == null) {
-            return "L-001";
-        } else {
-            int num = Integer.parseInt(lastId.split("-")[1]);
-            num++;
-            return String.format("L-%03d", num);
-        }
-    }
 }

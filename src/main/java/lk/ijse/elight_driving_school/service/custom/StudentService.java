@@ -9,8 +9,6 @@ import java.util.Optional;
 public interface StudentService extends SuperService {
     List<StudentDTO> getAllStudents() throws Exception;
 
-    String getLastStudentId() throws Exception;
-
     boolean saveStudents(StudentDTO t) throws Exception;
 
     boolean updateStudents(StudentDTO t) throws Exception;
@@ -20,6 +18,4 @@ public interface StudentService extends SuperService {
     List<String> getAllStudentIds() throws Exception;
 
     Optional<StudentDTO> findByStudentId(String id) throws Exception;
-
-    String generateNewStudentId();
 }

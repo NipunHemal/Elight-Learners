@@ -18,14 +18,14 @@ public class InstructorMapper {
                 .contact(instructor.getContact())
                 .specialization(instructor.getSpecialization())
                 .availability(instructor.getAvailability())
-                .courses(
-                        instructor.getCourses().stream()
-                                .map(CourseMapper::toDTO).toList()
-                )
-                .lessons(
-                        instructor.getLessons().stream()
-                                .map(LessonMapper::toDTO).toList()
-                )
+//                .courses(
+//                        instructor.getCourses().stream()
+//                                .map(CourseMapper::toDTO).toList()
+//                )
+//                .lessons(
+//                        instructor.getLessons().stream()
+//                                .map(LessonMapper::toDTO).toList()
+//                )
                 .build();
     }
 
@@ -33,7 +33,7 @@ public class InstructorMapper {
         if (dto == null) return null;
 
         Instructor instructor = new Instructor();
-        instructor.setInstructorId(Long.parseLong(dto.getInstructorId()));
+        instructor.setInstructorId(dto.getInstructorId() == null ? null : Long.parseLong(dto.getInstructorId()));
         instructor.setFirstName(dto.getFirstName());
         instructor.setLastName(dto.getLastName());
         instructor.setEmail(dto.getEmail());

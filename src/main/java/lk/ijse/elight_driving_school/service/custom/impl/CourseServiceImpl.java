@@ -28,16 +28,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public String getLastCourseId() throws Exception {
-        return courseDAO.getLastId();
-    }
-
-    @Override
     public boolean saveCourses(CourseDTO t) throws Exception {
-        Optional<Course> course = courseDAO.findById(t.getCourseId());
-        if (course.isPresent()) {
-            throw new DuplicateException("Course already exists");
-        }
         return courseDAO.save(CourseMapper.toEntity(t));
     }
 
@@ -70,8 +61,4 @@ public class CourseServiceImpl implements CourseService {
         return course.map(CourseMapper::toDTO);
     }
 
-    @Override
-    public String generateNewCourseId() {
-        return courseDAO.generateNewId();
-    }
 }

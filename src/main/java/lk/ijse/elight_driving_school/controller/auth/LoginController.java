@@ -26,7 +26,7 @@ public class LoginController{
             UserDTO user = userService.getUserByEmail(username);
 
             if (user == null){
-                NotificationUtils.showError("Login Error","User not found for "+username);
+                AlertUtils.showError("Login Error","User not found for"+username);
                 return;
             }
 

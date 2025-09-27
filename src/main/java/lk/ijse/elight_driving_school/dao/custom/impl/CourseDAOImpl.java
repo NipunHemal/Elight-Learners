@@ -16,27 +16,13 @@ public class CourseDAOImpl implements CourseDAO {
     @Override
     public List<Course> getAll() throws Exception {
         Session session = factoryConfig.getSession();
+        Transaction transaction = session.beginTransaction();
         try {
             Query<Course> query = session.createQuery("from Course",Course.class);
             List<Course> courseList = query.list();
+            transaction.commit();
             return courseList;
         }finally {
-            session.close();
-        }
-    }
-
-    @Override
-    public String getLastId() throws Exception {
-        Session session = factoryConfig.getSession();
-        try {
-            Query<String> query = session.createQuery("SELECT c.courseId FROM Course c ORDER BY c.courseId DESC", String.class)
-                    .setMaxResults(1);
-            List<String> courseIdList = query.list();
-            if (courseIdList.isEmpty()) {
-                return null;
-            }
-            return courseIdList.getFirst();
-        } finally {
             session.close();
         }
     }
@@ -115,23 +101,6 @@ public class CourseDAOImpl implements CourseDAO {
             return Optional.ofNullable(course);
         } finally {
             session.close();
-        }
-    }
-
-    @Override
-    public String generateNewId() {
-        String lastId = null;
-        try {
-            lastId = getLastId();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        if (lastId == null) {
-            return "C-001";
-        } else {
-            int num = Integer.parseInt(lastId.split("-")[1]);
-            num++;
-            return String.format("C-%03d", num);
         }
     }
 }

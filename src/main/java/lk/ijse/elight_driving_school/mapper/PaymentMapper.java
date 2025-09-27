@@ -1,10 +1,15 @@
 package lk.ijse.elight_driving_school.mapper;
 
+import lk.ijse.elight_driving_school.dao.DAOFactory;
+import lk.ijse.elight_driving_school.dao.custom.StudentDAO;
 import lk.ijse.elight_driving_school.dto.PaymentsDTO;
 import lk.ijse.elight_driving_school.dto.tm.PaymentsTM;
 import lk.ijse.elight_driving_school.entity.Payment;
+import lk.ijse.elight_driving_school.entity.Student;
+import lk.ijse.elight_driving_school.enums.DAOTypes;
 
 public class PaymentMapper {
+    private static StudentDAO studentDAO = DAOFactory.getInstance().getDAO(DAOTypes.STUDENTS);
 
     public static PaymentsDTO toDTO(Payment payment) {
         if (payment == null) return null;
@@ -20,15 +25,17 @@ public class PaymentMapper {
         return dto;
     }
 
-    public static Payment toEntity(PaymentsDTO dto) {
+    public static Payment toEntity(PaymentsDTO dto) throws Exception {
         if (dto == null) return null;
+        Student student = studentDAO.findById(dto.getStudentId()).orElse(null);
 
         Payment payment = new Payment();
-        payment.setPaymentId(Long.parseLong(dto.getPaymentId()));
+        payment.setPaymentId(dto.getPaymentId() == null ? null : Long.parseLong(dto.getPaymentId()));
         payment.setPaymentDate(dto.getPaymentDate());
         payment.setAmount(dto.getAmount());
         payment.setPaymentMethod(dto.getPaymentMethod());
         payment.setStatus(dto.getStatus());
+        payment.setStudent(student);
         return payment;
     }
 
@@ -40,6 +47,7 @@ public class PaymentMapper {
         payment.setPaymentDate(dto.getPaymentDate());
         payment.setAmount(dto.getAmount());
         payment.setPaymentMethod(dto.getPaymentMethod());
+        payment.setStudentId(dto.getStudentId());
         payment.setStatus(dto.getStatus());
         return payment;
     }

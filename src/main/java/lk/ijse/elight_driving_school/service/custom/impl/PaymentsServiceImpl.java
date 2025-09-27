@@ -29,16 +29,7 @@ public class PaymentsServiceImpl implements PaymentsService {
     }
 
     @Override
-    public String getLastPaymentId() throws Exception {
-        return paymentDAO.getLastId();
-    }
-
-    @Override
     public boolean savePayments(PaymentsDTO t) throws Exception {
-        Optional<Payment> payments = paymentDAO.findById(t.getPaymentId());
-        if (payments.isPresent()) {
-            throw new DuplicateException("Payment already exists");
-        }
         if (t.getStudentId() == null) {
             throw new NotFoundException("Student id is null");
         }
@@ -72,10 +63,5 @@ public class PaymentsServiceImpl implements PaymentsService {
     public Optional<PaymentsDTO> findByPaymentId(String id) throws Exception {
         Optional<Payment> payments = paymentDAO.findById(id);
         return payments.map(PaymentMapper::toDTO);
-    }
-
-    @Override
-    public String generateNewPaymentId() {
-        return paymentDAO.generateNewId();
     }
 }
