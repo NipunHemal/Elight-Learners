@@ -1,8 +1,9 @@
-package lk.ijse.project_management_tool.utils;
+package lk.ijse.elight_driving_school.util;
 
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -13,6 +14,18 @@ public class NotificationUtils {
         ImageView icon = new ImageView(image);
         icon.setFitWidth(32);
         icon.setFitHeight(32);
+//        Window owner = ReferenceUtils.primaryStage.getScene().getWindow();
+
+        if (owner != null) {
+            Notifications notification = Notifications.create()
+                    .title(title)
+                    .text(message)
+                    .graphic(icon)
+                    .hideAfter(Duration.seconds(3))
+                    .position(Pos.BOTTOM_RIGHT);
+            notification.show();
+            return;
+        }
 
         Notifications notification = Notifications.create()
                 .title(title)

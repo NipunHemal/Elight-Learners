@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="lk.ijse.elight_driving_school.controller.component.TableController"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox styleClass="main-container">
+
+        <!-- Breadcrumb -->
+        <HBox styleClass="breadcrumb-container">
+            <Label styleClass="breadcrumb-text" text="Project 1 / Members" />
+        </HBox>
+
+        <!-- Header -->
+        <HBox styleClass="header-container" alignment="CENTER_LEFT">
+            <Label styleClass="page-title" text="Members (1000)" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button styleClass="add-member-btn" text="Add member" />
+            <Button styleClass="edit-roles-btn" text="Edit roles" />
+        </HBox>
+
+        <!-- Tabs -->
+        <HBox styleClass="tabs-container">
+            <Button styleClass="tab-btn, tab-active" text="All" />
+            <Button styleClass="tab-btn" text="Members" />
+            <Button styleClass="tab-btn" text="Groups" />
+        </HBox>
+
+        <!-- Search and Filter Bar -->
+        <HBox styleClass="filter-container" alignment="CENTER_LEFT" spacing="15">
+            <!-- Search Box -->
+            <HBox styleClass="search-container" alignment="CENTER_LEFT">
+                <Label styleClass="search-icon" text="🔍" />
+                <TextField styleClass="search-field" promptText="Search" />
+            </HBox>
+
+            <!-- Roles Filter -->
+            <ComboBox styleClass="filter-dropdown" promptText="Roles" />
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <!-- Sort By -->
+            <ComboBox styleClass="sort-dropdown" promptText="Sort by account" />
+        </HBox>
+
+        <!-- Table -->
+        <TableView fx:id="membersTable" styleClass="members-table">
+            <columns>
+                <!-- Checkbox Column -->
+                <TableColumn styleClass="checkbox-column" prefWidth="40">
+                    <graphic>
+                        <CheckBox styleClass="header-checkbox" />
+                    </graphic>
+                </TableColumn>
+
+                <!-- Account Column -->
+                <TableColumn text="Account" prefWidth="250" styleClass="account-column">
+                    <cellFactory>
+<!--                        <fx:reference source="accountCellFactory" />-->
+                    </cellFactory>
+                </TableColumn>
+
+                <!-- Projects Column -->
+                <TableColumn text="Projects" prefWidth="80" styleClass="projects-column" />
+
+                <!-- Access Expires Column -->
+                <TableColumn text="Access expires" prefWidth="120" styleClass="expires-column" />
+
+                <!-- Role Column -->
+                <TableColumn text="Role" prefWidth="180" styleClass="role-column">
+                    <cellFactory>
+<!--                        <fx:reference source="roleCellFactory" />-->
+                    </cellFactory>
+                </TableColumn>
+
+                <!-- Expiration Column -->
+                <TableColumn text="Expiration" prefWidth="100" styleClass="expiration-column" />
+
+                <!-- Actions Column -->
+                <TableColumn styleClass="actions-column" prefWidth="60">
+                    <cellFactory>
+                        <fx:reference source="actionsCellFactory" />/
+                    </cellFactory>
+                </TableColumn>
+
+                <!-- Delete Column -->
+                <TableColumn styleClass="delete-column" prefWidth="60">
+                    <cellFactory>
+                        <fx:reference source="deleteCellFactory" />
+                    </cellFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+
+        <!-- Pagination -->
+        <HBox styleClass="pagination-container" alignment="CENTER_LEFT">
+            <HBox styleClass="pagination-numbers" spacing="5">
+                <Button styleClass="page-btn, page-active" text="1" />
+                <Button styleClass="page-btn" text="2" />
+                <Button styleClass="page-btn" text="3" />
+                <Button styleClass="page-btn" text="4" />
+                <Button styleClass="page-btn" text="5" />
+                <Label styleClass="page-dots" text="..." />
+                <Button styleClass="page-btn" text="10" />
+                <Button styleClass="page-btn, page-nav" text=">" />
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <HBox styleClass="rows-selector" alignment="CENTER_LEFT" spacing="5">
+                <Label styleClass="rows-label" text="Show:" />
+                <ComboBox styleClass="rows-dropdown" promptText="10 rows" />
+            </HBox>
+        </HBox>
+
+    </VBox>
+
+</AnchorPane>

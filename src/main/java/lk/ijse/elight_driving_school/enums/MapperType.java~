@@ -1,0 +1,11 @@
+package lk.ijse.elight_driving_school.mapper;
+
+public enum MapperType {
+    STUDENT,
+    COURSE,
+    INSTRUCTOR,
+    LESSON,
+    PAYMENT,
+    USER,
+    STUDENT_COURSE_DETAILS
+}

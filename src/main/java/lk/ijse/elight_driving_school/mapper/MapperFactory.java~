@@ -1,0 +1,35 @@
+package lk.ijse.elight_driving_school.mapper;
+
+import lk.ijse.elight_driving_school.enums.MapperType;
+import lk.ijse.elight_driving_school.mapper.impl.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapperFactory {
+
+    private static final Map<MapperType, Mapper<?, ?>> mappers = new HashMap<>();
+
+    static {
+        mappers.put(MapperType.STUDENT, new StudentMapper());
+        mappers.put(MapperType.COURSE, new CourseMapper());
+        mappers.put(MapperType.INSTRUCTOR, new InstructorMapper());
+        mappers.put(MapperType.LESSON, new LessonMapper());
+        mappers.put(MapperType.PAYMENT, new PaymentMapper());
+        mappers.put(MapperType.USER, new UserMapper());
+        mappers.put(MapperType.STUDENT_COURSE_DETAILS, new StudentCourseDetailsMapper());
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <E, D> Mapper<E, D> getMapper(MapperType type) {
+        return (Mapper<E, D>) mappers.get(type);
+    }
+}
+
+// example usage
+
+
+//        Mapper<Student, StudentDTO> studentMapper = MapperFactory.getMapper(MapperType.STUDENT);
+//        Student student = new Student();
+//        StudentDTO studentDTO = studentMapper.toDTO(student);
+//        Student studentEntity = studentMapper.toEntity(studentDTO);

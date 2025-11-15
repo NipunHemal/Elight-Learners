@@ -1,0 +1,517 @@
+/* Root Variables */
+.root {
+    -fx-background-color: #f5f7fa;
+    -fx-font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    -fx-background-color: #ffffff;
+    -fx-padding: 0px 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 2, 0);
+}
+
+.sidebar-header {
+    /*-fx-padding: 0 20px 30px 20px;*/
+    /*-fx-spacing: 10px;*/
+}
+
+.logo {
+    -fx-text-fill: #2c5aa0;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.app-menu {
+    -fx-text-fill: #8b9dc3;
+    -fx-font-size: 12px;
+    -fx-font-weight: normal;
+}
+
+.menu-items {
+    -fx-spacing: 10px;
+    -fx-padding: 30px 10px 10px 10px;
+}
+
+.menu-item {
+    -fx-pref-width: 200px;
+    -fx-background-color: #eee;
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+
+.menu-item:hover {
+    -fx-background-color: #dddddd;
+}
+
+.menu-item-active , .menu-item:focused {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+}
+
+.menu-item-active:hover , .menu-item:focused:hover {
+    -fx-background-color: #2775f3;
+    -fx-text-fill: white;
+}
+
+.menu-footer {
+    -fx-padding: 20px 10px 10px 10px;
+    -fx-spacing: 5px;
+}
+
+.footer-label {
+    -fx-text-fill: #8b9dc3;
+    -fx-font-size: 12px;
+    -fx-padding: 0 15px 5px 15px;
+}
+
+.copyright {
+    -fx-text-fill: #9ca3af;
+    -fx-font-size: 10px;
+    -fx-padding: 20px;
+    -fx-alignment: CENTER;
+}
+
+/* Main Content */
+.main-content {
+    -fx-background-color: #f5f7fa;
+    -fx-hbar-policy: never;
+}
+
+.content-container {
+    -fx-padding: 30px;
+    -fx-spacing: 25px;
+}
+
+/* Header */
+.header {
+    -fx-background-color: #ffffff;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 10px;
+}
+
+.welcome-title {
+    -fx-text-fill: #1f2937;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.welcome-subtitle {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 14px;
+    -fx-padding: 5px 0 0 0;
+}
+
+.header-actions {
+    -fx-alignment: CENTER;
+}
+
+.header-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #e5e7eb;
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+    -fx-cursor: hand;
+}
+
+.header-btn:hover {
+    -fx-background-color: #f3f4f6;
+}
+
+.avatar {
+    -fx-fill: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+    -fx-stroke: #e5e7eb;
+    -fx-stroke-width: 2;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    -fx-hgap: 20px;
+    -fx-vgap: 20px;
+}
+
+/* Card Section */
+.card-section {
+    -fx-spacing: 20px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.debit-card-container {
+    -fx-spacing: 15px;
+}
+
+.section-title {
+    -fx-text-fill: #1f2937;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.debit-card {
+    -fx-background-color: linear-gradient(135deg, #0f4c75 0%, #3282b8 100%);
+    -fx-background-radius: 15px;
+    -fx-padding: 25px;
+    -fx-min-width: 300px;
+    -fx-min-height: 180px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0, 0, 5);
+}
+
+.card-content {
+    -fx-spacing: 15px;
+}
+
+.card-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.card-type {
+    -fx-text-fill: rgba(255, 255, 255, 0.8);
+    -fx-font-size: 12px;
+}
+
+.chip {
+    -fx-fill: #ffd700;
+    -fx-arc-width: 4;
+    -fx-arc-height: 4;
+}
+
+.contactless {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+.card-number {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Courier New", monospace;
+}
+
+.card-detail-label {
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+    -fx-font-size: 10px;
+}
+
+.card-detail-value {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.visa-logo {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+.add-card-section {
+    -fx-alignment: CENTER;
+    -fx-spacing: 10px;
+    -fx-padding: 0 20px;
+}
+
+.add-card-btn {
+    -fx-fill: #f3f4f6;
+    -fx-stroke: #d1d5db;
+    -fx-stroke-width: 2;
+    -fx-stroke-type: INSIDE;
+    -fx-cursor: hand;
+}
+
+.add-card-btn:hover {
+    -fx-fill: #e5e7eb;
+}
+
+.add-card-label {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 12px;
+}
+
+/* Transactions Section */
+.transactions-section {
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+    -fx-padding: 25px;
+    -fx-spacing: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 10, 0, 0, 2);
+}
+
+.filter-btn {
+    -fx-background-color: #f3f4f6;
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 12px;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 20px;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+}
+
+.transaction-list {
+    -fx-spacing: 15px;
+}
+
+.transaction-item {
+    -fx-padding: 0 0 15px 0;
+    -fx-border-color: transparent transparent #f3f4f6 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.transaction-item:last-child {
+    -fx-border-width: 0;
+    -fx-padding: 0;
+}
+
+.transaction-icon {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 1);
+}
+
+.paypal-icon {
+    -fx-fill: #0070ba;
+}
+
+.spotify-icon {
+    -fx-fill: #1db954;
+}
+
+.transferwise-icon {
+    -fx-fill: #37d5d3;
+}
+
+.hm-icon {
+    -fx-fill: #e50010;
+}
+
+.transaction-title {
+    -fx-text-fill: #1f2937;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.transaction-date {
+    -fx-text-fill: #9ca3af;
+    -fx-font-size: 12px;
+}
+
+.transaction-amount {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.amount-positive {
+    -fx-text-fill: #10b981;
+}
+
+.amount-negative {
+    -fx-text-fill: #ef4444;
+}
+
+/* Balance Section */
+.balance-section {
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+    -fx-padding: 25px;
+    -fx-spacing: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 10, 0, 0, 2);
+    -fx-alignment: CENTER;
+}
+
+.balance-label {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER;
+}
+
+.balance-amount {
+    -fx-text-fill: #1f2937;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+.balance-date {
+    -fx-text-fill: #9ca3af;
+    -fx-font-size: 12px;
+    -fx-alignment: CENTER;
+}
+
+.balance-actions {
+    -fx-spacing: 20px;
+    -fx-alignment: CENTER;
+    -fx-padding: 20px 0 0 0;
+}
+
+.action-item {
+    -fx-spacing: 8px;
+    -fx-alignment: CENTER;
+}
+
+.action-icon {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 1);
+}
+
+.send-icon {
+    -fx-fill: #3b82f6;
+}
+
+.topup-icon {
+    -fx-fill: #10b981;
+}
+
+.more-icon {
+    -fx-fill: #6b7280;
+}
+
+.action-label {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 12px;
+}
+
+/* Expenses Section */
+.expenses-section {
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+    -fx-padding: 25px;
+    -fx-spacing: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 10, 0, 0, 2);
+    -fx-alignment: CENTER;
+}
+
+.chart-container {
+    -fx-alignment: CENTER;
+}
+
+.chart-background {
+    -fx-fill: #f3f4f6;
+}
+
+.chart-progress {
+    -fx-fill: transparent;
+    -fx-stroke: #3b82f6;
+    -fx-stroke-width: 8;
+    -fx-stroke-dash-array: 310;
+    -fx-stroke-dash-offset: 80;
+    -fx-stroke-line-cap: ROUND;
+}
+
+.chart-value {
+    -fx-text-fill: #1f2937;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.chart-label {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 12px;
+}
+
+.expenses-total {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER;
+}
+
+/* Invoice Section */
+.invoice-section {
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+    -fx-padding: 25px;
+    -fx-spacing: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 10, 0, 0, 2);
+}
+
+.table-btn {
+    -fx-background-color: #f3f4f6;
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 12px;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 6px;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+}
+
+.table-btn:hover {
+    -fx-background-color: #e5e7eb;
+}
+
+.invoice-table {
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-background-radius: 8px;
+}
+
+.invoice-table .column-header-background {
+    -fx-background-color: #f8fafc;
+}
+
+.invoice-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #e5e7eb transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6b7280;
+    -fx-padding: 15px 10px;
+}
+
+.invoice-table .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #f3f4f6 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.invoice-table .table-row-cell:selected {
+    -fx-background-color: #eff6ff;
+}
+
+.invoice-table .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 15px 10px;
+    -fx-font-size: 13px;
+}
+
+/* Scrollbar Styling */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #d1d5db;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #9ca3af;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        -fx-hgap: 15px;
+        -fx-vgap: 15px;
+    }
+
+    .content-container {
+        -fx-padding: 20px;
+    }
+}
